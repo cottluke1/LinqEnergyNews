@@ -12,10 +12,11 @@
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
     
-    <script src="source_images.js?v=20250612v2" defer></script>
-    <script src="articles_present.js?v=20250612v2" defer></script>
-    <script src="articles_premium.js?v=20250612v2" defer></script>
-    <script src="articles_past.js?v=20250612v4" defer></script>
+    <!-- Article Data Scripts -->
+    <script src="articles_present.js?v=20250612v2"></script>
+    <script src="articles_premium.js?v=20250612v2"></script>
+    <script src="articles_past.js?v=20250612v4"></script>
+    <script src="source_images.js?v=20250612v2"></script>
 
     <style>
         /* Custom base styles */
@@ -155,7 +156,6 @@
         .favorite-btn-area { flex-shrink: 0; margin-left: 1rem; }
         .news-card.locked .favorite-btn-area { padding-right: 2rem; }
         
-        /* --- Sidebar Filter Panel (Desktop) --- */
         .filter-panel {
             background-color: rgba(22, 22, 22, 0.7); backdrop-filter: blur(8px) saturate(130%);
             padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.4);
@@ -170,46 +170,6 @@
         .filter-button:hover { background-color: rgba(0, 191, 255, 0.1); color: #FFFFFF; border-color: rgba(0, 191, 255, 0.5); }
         .filter-button.active { background-color: rgba(0, 191, 255, 0.2); color: #FFFFFF; font-weight: 600; border-color: #00BFFF; }
         
-        /* --- Horizontal Filter Chips (Mobile) --- */
-        .horizontal-filter-container {
-            display: flex;
-            overflow-x: auto;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-            padding-bottom: 1rem; /* Space for scrollbar if visible */
-            margin-bottom: 1rem;
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-        .horizontal-filter-container::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
-        }
-        .filter-chip {
-            flex-shrink: 0; /* Prevent chips from shrinking */
-            display: inline-block;
-            padding: 0.5rem 1.25rem;
-            margin-right: 0.5rem;
-            border-radius: 9999px; /* Pill shape */
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #B0B0B0;
-            background-color: #1A1A1A;
-            border: 1px solid #333333;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .filter-chip:hover {
-             background-color: rgba(0, 191, 255, 0.1);
-             border-color: #00BFFF;
-             color: #FFFFFF;
-        }
-        .filter-chip.active {
-            background-color: #00BFFF;
-            color: #FFFFFF;
-            font-weight: 600;
-            border-color: #00BFFF;
-        }
-
         .search-container { position: relative; display: flex; align-items: center;}
         .search-input {
             width: 100%; padding: 0.875rem 1.125rem 0.875rem 2.75rem; background-color: #1A1A1A;
@@ -273,32 +233,8 @@
     </style>
 </head>
 <body class="antialiased">
-    <nav class="fixed top-0 left-0 w-full z-[1000] shadow-md py-3 bg-black">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <a href="index.html" class="text-3xl font-bold text-white">Linq</a>
-            <div class="hidden md:flex flex-1 justify-center space-x-8">
-                <a href="index.html" class="nav-link text-sm text-white hover:text-cyan-400 transition">News</a>
-                <a href="community.html" class="nav-link text-sm text-white hover:text-cyan-400 transition">Community</a>
-                <a href="linqai.html" class="nav-link text-sm text-white hover:text-cyan-400 transition">Linq AI</a>
-                <a href="earnings.html" class="nav-link text-sm text-white hover:text-cyan-400 transition">Earnings</a>
-                <a href="favorites.html" class="nav-link text-sm text-white hover:text-cyan-400 transition">Bookmarks</a>
-                <a href="linqplus.html" class="nav-link text-sm text-white hover:text-cyan-400 transition">Linq +</a>
-            </div>
-            <div class="flex items-center space-x-3">
-                <a href="login.html" id="authLinkDesktopLogin"
-                    class="hidden nav-link text-sm nav-link-button text-white bg-cyan-500 hover:bg-cyan-600 px-4 py-2 rounded transition">
-                    Login
-                </a>
-                <a href="profile.html" id="profileLinkDesktop" class="hidden" title="My Profile">
-                    <img id="navProfilePic"
-                        src="https://placehold.co/40x40/2C2F33/EAEAEA?text=U"
-                        alt="User"
-                        class="rounded-full w-9 h-9 object-cover"
-                        onerror="this.src='https://placehold.co/40x40/2C2F33/EAEAEA?text=U';">
-                </a>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar">
+    </div>
 
     <div class="ticker-banner">
       <div class="ticker-content" id="tickerContent"></div>
@@ -314,16 +250,6 @@
     <main id="main-content" class="container mx-auto p-4 sm:p-6 lg:p-8 mt-10">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-10">
             <div class="lg:col-span-9" id="news">
-                 <div id="categoryListMobile" class="horizontal-filter-container lg:hidden">
-                    <button class="filter-chip" data-category="Crude Oil">Crude Oil</button>
-                    <button class="filter-chip" data-category="Natural Gas">Natural Gas</button>
-                    <button class="filter-chip" data-category="Petrochemicals">Petrochemicals</button>
-                    <button class="filter-chip" data-category="Power">Power</button>
-                    <button class="filter-chip" data-category="Renewables">Renewables</button>
-                    <button class="filter-chip" data-category="Company News">Company News</button>
-                    <button class="filter-chip" data-category="Earnings">Earnings</button>
-                </div>
-
                 <section>
                     <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-8">
                         <h2 id="sectionDateTitle" class="section-title !mb-3 sm:!mb-0 !border-none">Latest News</h2>
@@ -336,10 +262,10 @@
                     <div id="paginationContainer" class="pagination-container"></div>
                 </section>
             </div>
-             <aside class="hidden lg:block lg:col-span-3 space-y-8">
+            <aside class="lg:col-span-3 space-y-8">
                 <div class="filter-panel p-6">
                     <h3 class="filter-title">Filter by Category</h3>
-                    <div id="categoryListDesktop" class="space-y-3">
+                    <div id="categoryList" class="space-y-3">
                         <button class="filter-button" data-category="Crude Oil">Crude Oil</button>
                         <button class="filter-button" data-category="Natural Gas">Natural Gas</button>
                         <button class="filter-button" data-category="Petrochemicals">Petrochemicals</button>
@@ -375,7 +301,6 @@
         let currentPage = 1;
         let allDaysData = [];
 		let favorites = JSON.parse(localStorage.getItem('linqFavoritesV2')) || [];
-        let activeCategories = [];
 
         // Initialize Firebase
         const firebaseConfig = {
@@ -391,58 +316,118 @@
         // --- DOM ELEMENTS ---
         const newsGrid = document.getElementById('newsGrid');
         const searchInput = document.getElementById('searchInput');
+        const categoryList = document.getElementById('categoryList');
         const paginationContainer = document.getElementById('paginationContainer');
         const sectionDateTitle = document.getElementById('sectionDateTitle');
         const mainContent = document.getElementById('main-content');
 
         // --- MAIN INITIALIZATION LOGIC ---
         document.addEventListener('DOMContentLoaded', () => {
-            firebase.auth().onAuthStateChanged((user) => {
-                const authLink = document.getElementById('authLinkDesktopLogin');
-                const profileLink = document.getElementById('profileLinkDesktop');
-                const profilePic = document.getElementById('navProfilePic');
-                
-                if (user) {
-                    authLink.classList.add('hidden');
-                    profileLink.classList.remove('hidden');
-                    if (user.photoURL) profilePic.src = user.photoURL;
-                } else {
-                    authLink.classList.remove('hidden');
-                    profileLink.classList.add('hidden');
-                }
-            });
+            // Load the header
+            fetch('header.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok for header.html');
+                    return response.text();
+                })
+                .then(data => {
+                    const navbarElement = document.getElementById('navbar');
+                    if (navbarElement) {
+                        navbarElement.innerHTML = data;
+                        initializeHeaderAndAuth();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching header:', error);
+                });
 
-            let tries = 0;
-            const dataLoadCheck = setInterval(() => {
-                if (window.presentDayArticles && window.pastArticles) {
-                    clearInterval(dataLoadCheck);
-                    initializeAppLogic();
-                } else if (++tries > 50) {
-                    clearInterval(dataLoadCheck);
-                    console.error("Article data scripts failed to load in time.");
-                    if(document.getElementById('newsGrid')) {
-                        document.getElementById('newsGrid').innerHTML = '<p class="text-center text-red-500 font-bold">Error: Critical article data failed to load. Please refresh the page.</p>';
+            // Initialize the app logic immediately
+            initializeAppLogic();
+        });
+
+        function initializeHeaderAndAuth() {
+            // Get all necessary elements from the DOM *after* the header is loaded
+            const authLinkDesktopLogin = document.getElementById('authLinkDesktopLogin');
+            const profileLinkDesktop = document.getElementById('profileLinkDesktop');
+            const navProfilePic = document.getElementById('navProfilePic');
+
+            // Firebase configuration
+            if (!firebase.apps.length) {
+                const firebaseConfigShared = {
+                    apiKey: "AIzaSyD_FCx8sIkrCoQMoKm5xQIvlyAmlqptETk",
+                    authDomain: "linq-b27a8.firebaseapp.com",
+                    projectId: "linq-b27a8",
+                    storageBucket: "linq-b27a8.appspot.com",
+                    messagingSenderId: "1067901051826",
+                    appId: "1:1067901051826:web:44452d1339cdbe2af07aab"
+                };
+                firebase.initializeApp(firebaseConfigShared);
+            }
+            const authInstance = firebase.auth();
+
+            authInstance.onAuthStateChanged(user => {
+                if (user) {
+                    // --- User is LOGGED IN ---
+                    if (authLinkDesktopLogin) authLinkDesktopLogin.classList.add('hidden');
+                    if (profileLinkDesktop) profileLinkDesktop.classList.remove('hidden');
+
+                    if(navProfilePic) {
+                        if (user.photoURL) {
+                            navProfilePic.src = user.photoURL;
+                        } else if (user.displayName) {
+                            navProfilePic.src = `https://placehold.co/40x40/2C2F33/EAEAEA?text=${user.displayName.charAt(0).toUpperCase()}`;
+                        } else if (user.email) {
+                            navProfilePic.src = `https://placehold.co/40x40/2C2F33/EAEAEA?text=${user.email.charAt(0).toUpperCase()}`;
+                        } else {
+                            navProfilePic.src = 'https://placehold.co/40x40/2C2F33/EAEAEA?text=U';
+                        }
+                    }
+                } else {
+                    // --- User is LOGGED OUT ---
+                    if (authLinkDesktopLogin) authLinkDesktopLogin.classList.remove('hidden');
+                    if (profileLinkDesktop) profileLinkDesktop.classList.add('hidden');
+                    if (navProfilePic) {
+                        navProfilePic.src = 'https://placehold.co/40x40/2C2F33/EAEAEA?text=U';
                     }
                 }
-            }, 100);
-        });
+                setActiveNavLink();
+            });
+
+            function setActiveNavLink() {
+                const currentPath = window.location.pathname.split("/").pop() || "index.html";
+                const navLinks = document.querySelectorAll('#navbar nav.fixed a.nav-link');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const linkHref = link.getAttribute('href');
+                    if (linkHref === currentPath || ((currentPath === "index.html" || currentPath === "") && linkHref === "index.html")) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        }
         
         function initializeAppLogic() { 
             const presentArticles = Array.isArray(window.presentDayArticles) ? window.presentDayArticles : [];
             const premiumArticles = Array.isArray(window.premiumArticles) ? window.premiumArticles : [];
             const todayArticles = [...presentArticles, ...premiumArticles];
             
-            allDaysData = [todayArticles].concat(window.pastArticles);
+            // This correctly combines today's articles with the array of past day articles.
+            allDaysData = [todayArticles].concat(window.pastArticles || []);
             
             displayArticlesForPage(currentPage);
             setupPagination();
             
-            document.body.addEventListener('click', handleCategoryFilter);
-            searchInput.addEventListener('input', () => {
-                displayArticlesForPage(currentPage);
-                setupPagination();
-            });
-            newsGrid.addEventListener('click', handleFavoriteClick);
+            if (categoryList) {
+                categoryList.addEventListener('click', handleCategoryFilter);
+            }
+            if (searchInput) {
+                searchInput.addEventListener('input', () => {
+                    displayArticlesForPage(currentPage);
+                    setupPagination();
+                });
+            }
+            if (newsGrid) {
+                newsGrid.addEventListener('click', handleFavoriteClick);
+            }
             window.addEventListener('resize', adjustLayoutForHeader);
             
             adjustLayoutForHeader();
@@ -502,7 +487,9 @@
             let articlesForDay = allDaysData[page - 1] || [];
             
             const searchQuery = searchInput.value.toLowerCase();
-            
+            const activeCategoryBtns = document.querySelectorAll('#categoryList .filter-button.active');
+            const activeCategories = Array.from(activeCategoryBtns).map(btn => btn.dataset.category);
+
             if (activeCategories.length > 0) {
                 articlesForDay = articlesForDay.filter(a => activeCategories.includes(a.category));
             }
@@ -566,18 +553,22 @@
             updateFavoriteIcons();
         } 
 
+        // [MODIFIED] This function implements the specific pagination logic based on the user's images and request.
 		function setupPagination() {
             if (!paginationContainer) return;
             paginationContainer.innerHTML = '';
             const totalPages = 30;
-            const page = currentPage;
+            const page = currentPage; // Use a shorter alias for the current page
 
+            // Helper function to create a button element
             const createButton = (text, pageNumber, isDisabled = false, isCurrent = false) => {
                 const btn = document.createElement('button');
                 btn.className = 'pagination-btn';
                 btn.innerHTML = text;
                 btn.disabled = isDisabled;
-                if (isCurrent) btn.classList.add('active');
+                if (isCurrent) {
+                    btn.classList.add('active');
+                }
                 btn.addEventListener('click', () => {
                     if (pageNumber) {
                         displayArticlesForPage(pageNumber);
@@ -588,6 +579,7 @@
                 return btn;
             };
 
+            // Helper function to create an ellipsis "..." element
             const createEllipsis = () => {
                 const ellipsis = document.createElement('span');
                 ellipsis.className = 'pagination-ellipsis';
@@ -595,21 +587,33 @@
                 return ellipsis;
             }
 
+            // --- Previous Arrow Button ---
             paginationContainer.appendChild(createButton('&larr;', page - 1, page === 1));
 
+            // --- Page Number Logic ---
             if (totalPages <= 7) { 
+                // Simple case: If there are 7 or fewer pages, show all of them without ellipses
                 for (let i = 1; i <= totalPages; i++) {
                     paginationContainer.appendChild(createButton(i, i, false, i === page));
                 }
             } else {
+                // Complex case: Use ellipses for a large number of pages
                 let pagesToShow = [];
+                
+                // Case 1: Near the beginning (pages 1-4) -> Show 1, 2, 3, 4, 5, ..., 30
                 if (page < 5) {
                     pagesToShow = [1, 2, 3, 4, 5, '...', totalPages];
-                } else if (page > totalPages - 4) {
+                } 
+                // Case 2: Near the end (pages 27-30) -> Show 1, ..., 26, 27, 28, 29, 30
+                else if (page > totalPages - 4) {
                     pagesToShow = [1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
-                } else {
+                }
+                // Case 3: In the middle -> Show 1, ..., current-1, current, current+1, ..., 30
+                else {
                     pagesToShow = [1, '...', page - 1, page, page + 1, '...', totalPages];
                 }
+
+                // This logic correctly renders the pages and preserves both "..." where needed for middle pages.
                 pagesToShow.forEach(p => {
                     if (p === '...') {
                         paginationContainer.appendChild(createEllipsis());
@@ -618,28 +622,16 @@
                     }
                 });
             }
+
+            // --- Next Arrow Button ---
             paginationContainer.appendChild(createButton('&rarr;', page + 1, page === totalPages));
         }
 
+
         function handleCategoryFilter(e) {
-            const button = e.target.closest('.filter-button, .filter-chip');
+            const button = e.target.closest('.filter-button');
             if (!button) return;
-
-            const category = button.dataset.category;
             button.classList.toggle('active');
-
-            // Sync the state of all matching category buttons (for mobile and desktop)
-            const allCategoryButtons = document.querySelectorAll(`[data-category="${category}"]`);
-            allCategoryButtons.forEach(btn => {
-                btn.classList.toggle('active', button.classList.contains('active'));
-            });
-
-            // Update the global list of active categories
-            activeCategories = Array.from(document.querySelectorAll('.filter-button.active, .filter-chip.active'))
-                                   .map(btn => btn.dataset.category)
-                                   // Use a Set to get unique values, then convert back to array
-                                   .filter((value, index, self) => self.indexOf(value) === index);
-
             displayArticlesForPage(currentPage);
             setupPagination();
         }
