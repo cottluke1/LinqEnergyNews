@@ -37,12 +37,12 @@
 
         /* --- Main Content Area --- */
         main {
-            padding-top: 80px; /* Space for fixed header */
+            padding-top: 60px; /* Space for fixed header */
             flex-grow: 1;
         }
         main .container {
-            padding-top: 40px;
-            padding-bottom: 60px;
+            padding-top: 2rem;
+            padding-bottom: 4rem;
         }
 
         /* --- Glassmorphism UI --- */
@@ -58,7 +58,7 @@
         .profile-nav-container {
              display: flex;
              justify-content: center;
-             margin-bottom: 40px;
+             margin-bottom: 2rem;
         }
         .profile-nav {
             display: inline-flex;
@@ -67,7 +67,7 @@
             border-radius: var(--border-radius-lg);
         }
         .nav-tab {
-            padding: 12px 24px;
+            padding: 10px 20px;
             font-weight: 600;
             color: #A0A0A0;
             cursor: pointer;
@@ -98,55 +98,36 @@
             overflow: hidden;
         }
         .card-header {
-            padding: 25px 30px;
+            padding: 20px 24px;
             background: rgba(255, 255, 255, 0.04);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .card-header h3 { margin: 0; font-size: 1.5em; font-weight: 700; }
-        .card-body { padding: 30px; }
+        .card-header h3 { margin: 0; font-size: 1.25em; font-weight: 700; }
+        .card-body { padding: 24px; }
 
         /* --- Profile Section Specifics --- */
-        .profile-info-container { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+        .profile-info-container { display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center;}
         .avatar-section { 
             position: relative;
-            cursor: pointer;
         }
         .avatar {
-            width: 140px; height: 140px; border-radius: 50%;
+            width: 120px; height: 120px; border-radius: 50%;
             border: 4px solid rgba(255, 255, 255, 0.1);
             object-fit: cover;
-            transition: filter 0.2s ease;
         }
-        .avatar-section:hover .avatar {
-            filter: brightness(0.7);
-        }
-        .avatar-overlay {
-            position: absolute;
-            inset: 0;
-            background-color: rgba(0,0,0,0.5);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-        .avatar-section:hover .avatar-overlay {
-            opacity: 1;
-        }
-        .profile-info { flex-grow: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .profile-info { width: 100%; display: flex; flex-direction: column; gap: 20px; }
         .info-item label {
-            display: block; color: #A0A0A0; font-size: 0.9em;
-            margin-bottom: 6px; font-weight: 500;
+            display: block; color: #A0A0A0; font-size: 0.8em;
+            margin-bottom: 4px; font-weight: 500;
             text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .info-item p { color: #F5F5F5; font-size: 1.1em; margin: 0; font-weight: 500;}
+        .info-item p { color: #F5F5F5; font-size: 1em; margin: 0; font-weight: 500;}
 
         /* --- Forms --- */
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; color: #A0A0A0; margin-bottom: 10px; font-weight: 500; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; color: #A0A0A0; margin-bottom: 8px; font-weight: 500; text-align: left; }
         .form-input {
-            width: 100%; padding: 14px 18px; 
+            width: 100%; padding: 12px 16px; 
             background-color: rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.15); 
             border-radius: var(--border-radius-md);
@@ -180,35 +161,47 @@
         }
         .btn:active { transform: translateY(0); }
         
-        .btn-danger { background-color: var(--error-red); color: white; }
-        .btn-danger:hover { background-color: #d92d23; box-shadow: 0 6px 20px rgba(255, 59, 48, 0.4);}
-        .btn-danger:disabled { background-color: #7f1d1d; cursor: not-allowed; opacity: 0.6; }
-
-        /* --- Modal Styles --- */
-        .modal-overlay {
-            display: none; position: fixed; inset: 0;
-            background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
-            z-index: 10000; justify-content: center; align-items: center;
-        }
-        .modal-box {
-            padding: 30px; border-radius: var(--border-radius-lg);
-            width: 90%; max-width: 500px;
-        }
-        
         /* Footer */
         footer {
             background-color: transparent; color: #A0A0A0;
-            padding: 30px 0; text-align: center;
+            padding: 30px 1rem; text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: auto;
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .profile-info-container { flex-direction: column; align-items: stretch; }
-            .profile-info { grid-template-columns: 1fr; }
-            .profile-nav-container { justify-content: flex-start; }
-            .profile-nav { flex-direction: column; }
+        @media (min-width: 768px) {
+            main .container {
+                 padding-top: 40px;
+                 padding-bottom: 60px;
+            }
+             .profile-info-container {
+                flex-direction: row;
+                text-align: left;
+                gap: 30px;
+            }
+            .avatar {
+                width: 140px;
+                height: 140px;
+            }
+            .profile-info {
+                gap: 24px;
+            }
+             .info-item p {
+                font-size: 1.1em;
+            }
+            .card-header {
+                 padding: 25px 30px;
+            }
+            .card-body {
+                padding: 30px;
+            }
+             .card-header h3 {
+                font-size: 1.5em;
+            }
+            .nav-tab {
+                padding: 12px 24px;
+            }
         }
     </style>
 </head>
@@ -216,12 +209,11 @@
     <div id="header-placeholder"></div>
 
     <main>
-        <div class="container mx-auto max-w-4xl">
+        <div class="container mx-auto max-w-4xl px-4">
             <div>
                 <div class="profile-nav-container">
                     <nav class="profile-nav glass-ui">
                         <a href="#profile" class="nav-tab active-link">Profile</a>
-                        <a href="#subscription" class="nav-tab">Subscription</a>
                         <a href="#security" class="nav-tab">Security</a>
                         <a href="#contact" class="nav-tab">Contact</a>
                     </nav>
@@ -230,18 +222,10 @@
                 <div id="profile" class="content-section active-section">
                     <div class="card glass-ui">
                         <div class="card-body profile-info-container">
-                            <div id="changeAvatarButton" class="avatar-section">
+                            <div class="avatar-section">
                                 <img src="https://placehold.co/140x140/1A1A1A/FFFFFF?text=U&font=inter" alt="User Avatar" class="avatar" id="profileAvatar">
-                                <div class="avatar-overlay">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                </div>
-                                <input type="file" id="avatarInput" accept="image/*" style="display: none;">
                             </div>
                             <div class="profile-info">
-                                <div class="info-item">
-                                    <label>Full Name</label>
-                                    <p id="profileFullName">N/A</p>
-                                </div>
                                 <div class="info-item">
                                     <label>Username</label>
                                     <p id="profileUsername">N/A</p>
@@ -255,19 +239,6 @@
                                     <p id="profileJoinedDate">N/A</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="subscription" class="content-section">
-                     <div class="card glass-ui">
-                        <div class="card-header">
-                            <h3>My Subscription</h3>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-lg">Your current plan: <span id="current-plan-name" class="font-bold text-cyan-400">Free Plan</span></p>
-                            <p class="text-gray-400" id="subscription-status-text">You have access to basic news and community features.</p>
-                            <a href="linqplus.html" class="btn btn-glass mt-6">See All Plans</a>
                         </div>
                     </div>
                 </div>
@@ -292,7 +263,6 @@
                             <hr class="border-gray-700 my-8">
                             <div class="space-y-4">
                                 <button id="logoutButton" class="btn btn-glass w-full">Logout</button>
-                                <button id="deleteAccountBtn" class="btn btn-danger w-full">Delete Account</button>
                             </div>
                         </div>
                     </div>
@@ -313,19 +283,6 @@
         </div>
     </main>
 
-    <div id="deleteAccountModal" class="modal-overlay">
-        <div class="modal-box glass-ui">
-            <h3 class="text-xl font-bold mb-4 text-red-400">Are you absolutely sure?</h3>
-            <p class="text-gray-300 mb-4">This action cannot be undone. To confirm, please type "DELETE" in the box below.</p>
-            <div class="form-group">
-                <input type="text" id="deleteConfirmInput" placeholder="DELETE" class="form-input">
-            </div>
-            <div class="flex justify-end gap-4">
-                <button id="cancelDeleteBtn" class="btn btn-glass">Cancel</button>
-                <button id="confirmDeleteBtn" class="btn btn-danger" disabled>Delete My Account</button>
-            </div>
-        </div>
-    </div>
 
     <footer>
         <div class="container">
@@ -352,7 +309,6 @@
                 firebase.initializeApp(firebaseConfig);
             }
             const authInstance = firebase.auth();
-            const storageInstance = firebase.storage();
 
             const handleLogout = () => {
                 authInstance.signOut().then(() => {
@@ -366,7 +322,6 @@
             if(logoutButton) logoutButton.addEventListener('click', handleLogout);
 
             authInstance.onAuthStateChanged(user => {
-                const profileFullNameEl = document.getElementById('profileFullName');
                 const profileEmailEl = document.getElementById('profileEmail');
                 const profileUsernameEl = document.getElementById('profileUsername');
                 const profileJoinedDateEl = document.getElementById('profileJoinedDate');
@@ -383,9 +338,8 @@
                         else navProfilePic.src = 'https://placehold.co/40x40/2C2F33/EAEAEA?text=U&font=inter';
                     }
 
-                    if (profileFullNameEl) profileFullNameEl.textContent = user.displayName || 'N/A';
                     if (profileEmailEl) profileEmailEl.textContent = user.email || 'N/A';
-                    if (profileUsernameEl) profileUsernameEl.textContent = `@${user.email ? user.email.split('@')[0] : (user.displayName?.replace(/\s+/g, '').toLowerCase() || 'user')}`;
+                    if (profileUsernameEl) profileUsernameEl.textContent = user.displayName || `@${user.email ? user.email.split('@')[0] : 'user'}`;
                     if (profileJoinedDateEl && user.metadata.creationTime) {
                         profileJoinedDateEl.textContent = new Date(user.metadata.creationTime).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
                     }
@@ -407,35 +361,6 @@
                     window.location.href = 'login.html';
                 }
             });
-
-            const changeAvatarButton = document.getElementById("changeAvatarButton");
-            const avatarInput = document.getElementById("avatarInput");
-            if (changeAvatarButton && avatarInput) {
-                changeAvatarButton.addEventListener("click", () => avatarInput.click());
-                avatarInput.addEventListener("change", async (e) => {
-                    const file = e.target.files[0];
-                    if (!file) return;
-                    const user = authInstance.currentUser;
-                    if (!user) return;
-                    
-                    const storageRef = storageInstance.ref();
-                    const avatarRef = storageRef.child(`avatars/${user.uid}/${file.name}`);
-                    
-                    try {
-                        const snapshot = await avatarRef.put(file);
-                        const downloadURL = await snapshot.ref.getDownloadURL();
-                        await user.updateProfile({ photoURL: downloadURL });
-                        
-                        document.getElementById('profileAvatar').src = downloadURL;
-                        if(document.getElementById('navProfilePic')) {
-                            document.getElementById('navProfilePic').src = downloadURL;
-                        }
-                    } catch (error) {
-                        console.error("Avatar upload error:", error);
-                        alert("Failed to upload new avatar.");
-                    }
-                });
-            }
         }
 
         fetch('header.html')
@@ -450,12 +375,6 @@
             const navTabs = document.querySelectorAll('.nav-tab');
             const contentSections = document.querySelectorAll('.content-section');
             
-            const deleteAccountBtn = document.getElementById('deleteAccountBtn');
-            const deleteAccountModal = document.getElementById('deleteAccountModal');
-            const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-            const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-            const deleteConfirmInput = document.getElementById('deleteConfirmInput');
-
             function showSection(sectionId) {
                 contentSections.forEach(section => section.classList.remove('active-section'));
                 const targetSection = document.getElementById(sectionId);
@@ -495,42 +414,6 @@
 
             activateSectionFromHash();
             window.addEventListener('hashchange', activateSectionFromHash);
-            
-            if(deleteAccountBtn) {
-                deleteAccountBtn.addEventListener('click', () => {
-                    if(deleteAccountModal) deleteAccountModal.style.display = 'flex';
-                });
-            }
-
-            if(cancelDeleteBtn) {
-                cancelDeleteBtn.addEventListener('click', () => {
-                    if(deleteAccountModal) deleteAccountModal.style.display = 'none';
-                    if(deleteConfirmInput) deleteConfirmInput.value = '';
-                    if(confirmDeleteBtn) confirmDeleteBtn.disabled = true;
-                });
-            }
-            
-            if(deleteConfirmInput) {
-                deleteConfirmInput.addEventListener('input', (e) => {
-                    if(confirmDeleteBtn) confirmDeleteBtn.disabled = e.target.value !== 'DELETE';
-                });
-            }
-
-            if(confirmDeleteBtn) {
-                confirmDeleteBtn.addEventListener('click', async () => {
-                    const user = firebase.auth().currentUser;
-                    if(user) {
-                        try {
-                            await user.delete();
-                            alert("Account deleted successfully.");
-                            window.location.href = "index.html";
-                        } catch (error) {
-                            console.error("Error deleting account:", error);
-                            alert("Error deleting account: " + error.message + ". Please re-login and try again if necessary.");
-                        }
-                    }
-                });
-            }
         });
     </script>
 </body>
