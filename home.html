@@ -12,11 +12,11 @@
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
     
-    <script src="source_images.js?v=20250612v2" defer></script>
-    <script src="articles_present.js?v=20250612v2" defer></script>
-    <script src="articles_premium.js?v=20250612v2" defer></script>
-    <!-- Referencing the potentially updated past articles file -->
-    <script src="articles_past.js?v=20250612v4" defer></script>
+    <!-- Article Data Scripts -->
+    <script src="articles_present.js?v=20250612v2"></script>
+    <script src="articles_premium.js?v=20250612v2"></script>
+    <script src="articles_past.js?v=20250612v4"></script>
+    <script src="source_images.js?v=20250612v2"></script>
 
     <style>
         /* Custom base styles */
@@ -233,33 +233,8 @@
     </style>
 </head>
 <body class="antialiased">
-    <nav class="fixed top-0 left-0 w-full z-[1000] shadow-md py-3 bg-black">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <!-- Logo -->
-            <a href="home.html" class="text-3xl font-bold text-white">Linq</a>
-            <!-- Centered Nav Links -->
-            <div class="hidden md:flex flex-1 justify-center space-x-8">
-                <a href="home.html" class="nav-link text-sm text-white hover:text-cyan-400 transition">News</a>
-                <a href="community.html" class="nav-link text-sm text-white hover:text-cyan-400 transition">Community</a>
-            </div>
-            <!-- Right: Login/Profile -->
-            <div class="flex items-center space-x-3">
-                <!-- The login button is now hidden by default to prevent flashing -->
-                <a href="login.html" id="authLinkDesktopLogin"
-                    class="hidden nav-link text-sm nav-link-button text-white bg-cyan-500 hover:bg-cyan-600 px-4 py-2 rounded transition">
-                    Login
-                </a>
-                <!-- The profile link is hidden by default and will be shown by the main page's script -->
-                <a href="profile.html" id="profileLinkDesktop" class="hidden" title="My Profile">
-                    <img id="navProfilePic"
-                        src="https://placehold.co/40x40/2C2F33/EAEAEA?text=U"
-                        alt="User"
-                        class="rounded-full w-9 h-9 object-cover"
-                        onerror="this.src='https://placehold.co/40x40/2C2F33/EAEAEA?text=U';">
-                </a>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar">
+    </div>
 
     <div class="ticker-banner">
       <div class="ticker-content" id="tickerContent"></div>
@@ -348,71 +323,111 @@
 
         // --- MAIN INITIALIZATION LOGIC ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Handle authentication state
-            firebase.auth().onAuthStateChanged((user) => {
-                const authLink = document.getElementById('authLinkDesktopLogin');
-                const profileLink = document.getElementById('profileLinkDesktop');
-                const profilePic = document.getElementById('navProfilePic');
-                
+            // Load the header
+            fetch('header.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok for header.html');
+                    return response.text();
+                })
+                .then(data => {
+                    const navbarElement = document.getElementById('navbar');
+                    if (navbarElement) {
+                        navbarElement.innerHTML = data;
+                        initializeHeaderAndAuth();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching header:', error);
+                });
+
+            // Initialize the app logic immediately
+            initializeAppLogic();
+        });
+
+        function initializeHeaderAndAuth() {
+            // Get all necessary elements from the DOM *after* the header is loaded
+            const authLinkDesktopLogin = document.getElementById('authLinkDesktopLogin');
+            const profileLinkDesktop = document.getElementById('profileLinkDesktop');
+            const navProfilePic = document.getElementById('navProfilePic');
+
+            // Firebase configuration
+            if (!firebase.apps.length) {
+                const firebaseConfigShared = {
+                    apiKey: "AIzaSyD_FCx8sIkrCoQMoKm5xQIvlyAmlqptETk",
+                    authDomain: "linq-b27a8.firebaseapp.com",
+                    projectId: "linq-b27a8",
+                    storageBucket: "linq-b27a8.appspot.com",
+                    messagingSenderId: "1067901051826",
+                    appId: "1:1067901051826:web:44452d1339cdbe2af07aab"
+                };
+                firebase.initializeApp(firebaseConfigShared);
+            }
+            const authInstance = firebase.auth();
+
+            authInstance.onAuthStateChanged(user => {
                 if (user) {
-                    // User is signed in
-                    authLink.classList.add('hidden');
-                    profileLink.classList.remove('hidden');
-                    // Update profile picture if available, otherwise use default
-                    if (user.photoURL) {
-                        profilePic.src = user.photoURL;
-                    } else {
-                        // Use first letter of email or display name as fallback
-                        const initial = (user.displayName || user.email || 'U').charAt(0).toUpperCase();
-                        profilePic.src = `https://placehold.co/40x40/2C2F33/EAEAEA?text=${initial}`;
+                    // --- User is LOGGED IN ---
+                    if (authLinkDesktopLogin) authLinkDesktopLogin.classList.add('hidden');
+                    if (profileLinkDesktop) profileLinkDesktop.classList.remove('hidden');
+
+                    if(navProfilePic) {
+                        if (user.photoURL) {
+                            navProfilePic.src = user.photoURL;
+                        } else if (user.displayName) {
+                            navProfilePic.src = `https://placehold.co/40x40/2C2F33/EAEAEA?text=${user.displayName.charAt(0).toUpperCase()}`;
+                        } else if (user.email) {
+                            navProfilePic.src = `https://placehold.co/40x40/2C2F33/EAEAEA?text=${user.email.charAt(0).toUpperCase()}`;
+                        } else {
+                            navProfilePic.src = 'https://placehold.co/40x40/2C2F33/EAEAEA?text=U';
+                        }
                     }
                 } else {
-                    // User is signed out
-                    authLink.classList.remove('hidden');
-                    profileLink.classList.add('hidden');
-                    // Reset to default placeholder
-                    profilePic.src = 'https://placehold.co/40x40/2C2F33/EAEAEA?text=U';
-                }
-            });
-
-            // [MODIFIED] Wait for external article scripts to load before initializing the app.
-            // This prevents a race condition where the app tries to access article data before it's available.
-            let tries = 0;
-            const dataLoadCheck = setInterval(() => {
-                // We need both present and past articles to be loaded from the external JS files.
-                if (window.presentDayArticles && window.pastArticles) {
-                    clearInterval(dataLoadCheck);
-                    initializeAppLogic(); // Data is ready, so we can run the main app logic.
-                } else if (++tries > 50) { // Fail after 5 seconds to prevent an infinite loop.
-                    clearInterval(dataLoadCheck);
-                    console.error("Article data scripts failed to load in time.");
-                    if(document.getElementById('newsGrid')) {
-                        document.getElementById('newsGrid').innerHTML = '<p class="text-center text-red-500 font-bold">Error: Critical article data failed to load. Please refresh the page.</p>';
+                    // --- User is LOGGED OUT ---
+                    if (authLinkDesktopLogin) authLinkDesktopLogin.classList.remove('hidden');
+                    if (profileLinkDesktop) profileLinkDesktop.classList.add('hidden');
+                    if (navProfilePic) {
+                        navProfilePic.src = 'https://placehold.co/40x40/2C2F33/EAEAEA?text=U';
                     }
                 }
-            }, 100);
-        });
+                setActiveNavLink();
+            });
+
+            function setActiveNavLink() {
+                const currentPath = window.location.pathname.split("/").pop() || "index.html";
+                const navLinks = document.querySelectorAll('#navbar nav.fixed a.nav-link');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const linkHref = link.getAttribute('href');
+                    if (linkHref === currentPath || ((currentPath === "index.html" || currentPath === "") && linkHref === "index.html")) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        }
         
-        // This function now runs ONLY after we've confirmed the data is loaded.
         function initializeAppLogic() { 
             const presentArticles = Array.isArray(window.presentDayArticles) ? window.presentDayArticles : [];
             const premiumArticles = Array.isArray(window.premiumArticles) ? window.premiumArticles : [];
             const todayArticles = [...presentArticles, ...premiumArticles];
             
             // This correctly combines today's articles with the array of past day articles.
-            // allDaysData will be structured like: [ [page1_articles], [page2_articles], ... ]
-            // where page 2 corresponds to the first day in `pastArticles`, page 3 to the second, etc.
-            allDaysData = [todayArticles].concat(window.pastArticles);
+            allDaysData = [todayArticles].concat(window.pastArticles || []);
             
             displayArticlesForPage(currentPage);
             setupPagination();
             
-            categoryList.addEventListener('click', handleCategoryFilter);
-            searchInput.addEventListener('input', () => {
-                displayArticlesForPage(currentPage);
-                setupPagination();
-            });
-            newsGrid.addEventListener('click', handleFavoriteClick);
+            if (categoryList) {
+                categoryList.addEventListener('click', handleCategoryFilter);
+            }
+            if (searchInput) {
+                searchInput.addEventListener('input', () => {
+                    displayArticlesForPage(currentPage);
+                    setupPagination();
+                });
+            }
+            if (newsGrid) {
+                newsGrid.addEventListener('click', handleFavoriteClick);
+            }
             window.addEventListener('resize', adjustLayoutForHeader);
             
             adjustLayoutForHeader();
