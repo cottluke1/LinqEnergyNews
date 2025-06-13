@@ -362,13 +362,20 @@
                     // User is signed in
                     authLink.classList.add('hidden');
                     profileLink.classList.remove('hidden');
+                    // Update profile picture if available, otherwise use default
                     if (user.photoURL) {
                         profilePic.src = user.photoURL;
+                    } else {
+                        // Use first letter of email or display name as fallback
+                        const initial = (user.displayName || user.email || 'U').charAt(0).toUpperCase();
+                        profilePic.src = `https://placehold.co/40x40/2C2F33/EAEAEA?text=${initial}`;
                     }
                 } else {
                     // User is signed out
                     authLink.classList.remove('hidden');
                     profileLink.classList.add('hidden');
+                    // Reset to default placeholder
+                    profilePic.src = 'https://placehold.co/40x40/2C2F33/EAEAEA?text=U';
                 }
             });
 
