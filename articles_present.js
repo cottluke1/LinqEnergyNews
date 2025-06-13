@@ -1,164 +1,53 @@
 // /js/articles_present.js
-// Data is assigned to the global 'window' object to be accessible by other scripts.
 window.presentDayArticles = [
-    {
-        id: "p1",
-        category: 'Crude Oil',
-        title: 'Oil Prices Inch Higher on Supply Tightness and OPEC+ Cuts',
-        date: 'June 11, 2025',
-        source: 'Reuters',
-        link: 'https://www.reuters.com/business/energy/oil-prices-inch-higher-supply-tightness-opec-cuts-2025-06-11/'
-    },
-    {
-        id: "p2",
-        category: 'Natural Gas',
-        title: 'European Natural Gas Storage Nears Capacity Ahead of Schedule',
-        date: 'June 11, 2025',
-        source: 'Bloomberg',
-        link: 'https://www.bloomberg.com/news/articles/2025-06-11/european-gas-storage-nears-capacity-ahead-of-schedule'
-    },
-    {
-        id: "p3",
-        category: 'Renewables',
-        title: 'MIT Researchers Announce New Breakthrough in Solar Panel Efficiency',
-        date: 'June 11, 2025',
-        source: 'CNBC',
-        link: 'https://www.cnbc.com/2025/06/11/mit-solar-panel-efficiency-breakthrough-announced.html'
-    },
-    {
-        id: "p4",
-        category: 'Company News',
-        title: 'ExxonMobil Advances Major Carbon Capture Project',
-        date: 'June 11, 2025',
-        source: 'Forbes',
-        link: 'https://www.forbes.com/sites/forbesbusinesscouncil/2025/06/11/exxonmobil-advances-major-carbon-capture-project/'
-    },
-    {
-        id: "p5",
-        category: 'Power',
-        title: 'Texas Grid Faces New Record Demand as Heatwave Persists',
-        date: 'June 11, 2025',
-        source: 'BBC News',
-        link: 'https://www.bbc.com/news/business-61856789'
-    },
-    {
-        id: "p6",
-        category: 'Earnings',
-        title: 'Chevron Beats Expectations in Q2 Earnings',
-        date: 'June 11, 2025',
-        source: 'Seeking Alpha',
-        link: 'https://seekingalpha.com/news/4049501-chevron-q2-earnings-beat-expectations'
-    },
-    {
-        id: "p7",
-        category: 'Petrochemicals',
-        title: 'Dow to Expand Ethylene Production Capacity in Texas',
-        date: 'June 11, 2025',
-        source: 'Wall Street Journal',
-        link: 'https://www.wsj.com/articles/dow-to-expand-ethylene-production-capacity-in-texas-2025-06-11'
-    },
-    {
-        id: "p8",
-        category: 'Company News',
-        title: 'BP to Sell $1 Billion of Non-Core Assets to Streamline Portfolio',
-        date: 'June 11, 2025',
-        source: 'Financial Times',
-        link: 'https://www.ft.com/content/bp-sell-billion-assets-2025-06-11'
-    },
-    {
-        id: "p9",
-        category: 'Crude Oil',
-        title: 'Saudi Aramco Maintains Official Selling Price for Asia',
-        date: 'June 11, 2025',
-        source: 'Reuters',
-        link: 'https://www.reuters.com/business/energy/saudi-aramco-maintains-asia-pricing-2025-06-11/'
-    },
-    {
-        id: "p10",
-        category: 'Natural Gas',
-        title: 'US LNG Exports Hit Monthly Record as Asian Demand Surges',
-        date: 'June 11, 2025',
-        source: 'Yahoo Finance',
-        link: 'https://finance.yahoo.com/news/us-lng-exports-hit-record-asian-demand-2025-06-11-093000291.html'
-    },
-    {
-        id: "p11",
-        category: 'Power',
-        title: 'California Approves Massive Battery Storage Project',
-        date: 'June 11, 2025',
-        source: 'Bloomberg',
-        link: 'https://www.bloomberg.com/news/articles/2025-06-11/california-approves-massive-battery-storage-project'
-    },
-    {
-        id: "p12",
-        category: 'Renewables',
-        title: 'Vestas Secures 1 GW Wind Turbine Order in India',
-        date: 'June 11, 2025',
-        source: 'CNBC',
-        link: 'https://www.cnbc.com/2025/06/11/vestas-secures-1gw-wind-turbine-order-india.html'
-    },
-    {
-        id: "p13",
-        category: 'Earnings',
-        title: 'Shell Raises Dividend After Strong Quarterly Results',
-        date: 'June 11, 2025',
-        source: 'Forbes',
-        link: 'https://www.forbes.com/sites/forbesbusinesscouncil/2025/06/11/shell-raises-dividend-q2-results/'
-    },
-    {
-        id: "p14",
-        category: 'Petrochemicals',
-        title: 'LyondellBasell Unveils Recycled Plastics Initiative',
-        date: 'June 11, 2025',
-        source: 'BBC News',
-        link: 'https://www.bbc.com/news/business-61859989'
-    },
-    {
-        id: "p15",
-        category: 'Company News',
-        title: 'TotalEnergies Expands Offshore Wind in US',
-        date: 'June 11, 2025',
-        source: 'Wall Street Journal',
-        link: 'https://www.wsj.com/articles/totalenergies-expands-offshore-wind-in-us-2025-06-11'
-    },
-    {
-        id: "p16",
-        category: 'Crude Oil',
-        title: 'Russia Boosts Crude Exports to India Despite Sanctions',
-        date: 'June 11, 2025',
-        source: 'Financial Times',
-        link: 'https://www.ft.com/content/russia-boosts-crude-exports-india-2025-06-11'
-    },
-    {
-        id: "p17",
-        category: 'Natural Gas',
-        title: 'Australia Sees Natural Gas Export Revenue Climb',
-        date: 'June 11, 2025',
-        source: 'Yahoo Finance',
-        link: 'https://finance.yahoo.com/news/australia-natural-gas-export-revenue-climb-2025-06-11.html'
-    },
-    {
-        id: "p18",
-        category: 'Power',
-        title: "Europe's Nuclear Comeback: New Projects Announced",
-        date: 'June 11, 2025',
-        source: 'Seeking Alpha',
-        link: 'https://seekingalpha.com/news/4049522-europe-nuclear-new-projects-announced'
-    },
-    {
-        id: "p19",
-        category: 'Renewables',
-        title: 'SolarEdge Reports Major Expansion into Latin America',
-        date: 'June 11, 2025',
-        source: 'Reuters',
-        link: 'https://www.reuters.com/business/energy/solaredge-expansion-latin-america-2025-06-11/'
-    },
-    {
-        id: "p20",
-        category: 'Earnings',
-        title: 'Eni Outperforms in Quarterly Earnings',
-        date: 'June 11, 2025',
-        source: 'Bloomberg',
-        link: 'https://www.bloomberg.com/news/articles/2025-06-11/eni-outperforms-quarterly-earnings'
-    }
+  {id:"p1",category:"Oil & Markets",title:"Oil settles lower as traders book profits after Middle East rally",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/business/energy/oil-prices-tick-up-worries-escalating-us-iran-tension-2025-06-12/"},
+  {id:"p2",category:"Oil & Policy",title:"Trump frustrated about the recent rise in oil prices",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/business/energy/trump-says-unhappy-about-recent-rise-oil-prices-2025-06-12/"},
+  {id:"p3",category:"Oil Forecast",title:"JP Morgan maintains 2025 oil forecast in low‑to‑mid $60s",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/business/energy/jp-morgan-maintains-2025-forecast-oil-prices-low-to-mid-60s-2025-06-12/"},
+  {id:"p4",category:"Policy",title:"Trump’s energy dominance agenda could be ravaged by Section 899",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/markets/commodities/trumps-energy-dominance-agenda-could-be-ravaged-by-section-899-2025-06-12/"},
+  {id:"p5",category:"Infrastructure",title:"TotalEnergies’ Saft to build Fukushima battery storage site",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/business/energy/totalenergies-saft-build-fukushima-battery-storage-site-2025-06-12/"},
+  {id:"p6",category:"Infrastructure",title:"NextDecade signs $9 billion contracts with Bechtel for LNG sites",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/business/energy/nextdecade-signs-9-billion-contracts-with-bechtel-construction-lng-sites-2025-06-12/"},
+  {id:"p7",category:"Policy & Regulation",title:"EU‑style biomass‑based diesel quotas set in EPA proposal",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/sustainability/climate-energy/white-house-completes-review-epas-biofuel-blending-obligation-proposal-2025-06-12/"},
+  {id:"p8",category:"Corporate",title:"NextEra workers net $45 million from sales of company stock",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/business/energy/nextera-workers-net-45-million-sales-company-stock-2025-06-12/"},
+  {id:"p9",category:"Policy",title:"11 states sue to block rollback of California's 2035 EV rules",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/sustainability/climate-energy/california-10-other-states-sue-block-trump-killing-2035-ev-rules-2025-06-12/"},
+  {id:"p10",category:"Tech & Clean Energy",title:"Meta signs deal for advanced geothermal power in New Mexico",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/sustainability/boards-policy-regulation/meta-signs-deal-advanced-geothermal-power-new-mexico-2025-06-12/"},
+  {id:"p11",category:"Storage & Markets",title:"US battery storage market soars despite federal policy shifts",date:"June 12, 2025",source:"Rystad Energy",link:"https://www.rystadenergy.com/news/us-battery-energy-storage-market-soars-despite-federal-policy-shifts"},
+  {id:"p12",category:"Policy",title:"CPS CEO warns removing renewable tax breaks shifts costs to consumers",date:"June 12, 2025",source:"Express",link:"https://www.expressnews.com/business/article/cps-energy-ercot-renewable-tax-breaks-20372652.php"},
+  {id:"p13",category:"Grid & Reliability",title:"Using energy‑as‑a‑service to lower costs, add predictability",date:"June 12, 2025",source:"Utility Dive",link:"https://www.utilitydive.com/news/energy-as-a-service-lower-costs-add-predictability-Renew-Charlie-Lord-EaaS-/750551/"},
+  {id:"p14",category:"Renewables",title:"Storage shift begins: SECI floats bids for 2,000 MW solar + battery",date:"June 12, 2025",source:"Times of India",link:"https://timesofindia.indiatimes.com/business/india-business/storage-shift-begins-seci-floats-bids-for-2000-mw-solar-with-co-located-battery-systems-projects-to-support-indias-2030-grid-targets/articleshow/121806927.cms"},
+  {id:"p15",category:"International",title:"World Bank to end ban on nuclear energy projects",date:"June 12, 2025",source:"Arab News",link:"https://www.arabnews.com/node/2604256/business-economy"},
+  {id:"p16",category:"International",title:"Poland’s PGE to spend $63.8 bn under new strategy",date:"June 12, 2025",source:"Reuters",link:"https://www.tradingview.com/news/reuters.com%2C2025%3Anewsml_L1N3SF0JP%3A0-poland-s-pge-to-spend-63-8-billion-under-new-strategy/"},
+  {id:"p17",category:"International",title:"Uzbekistan keen to collaborate with Saudi Arabia on environment",date:"June 12, 2025",source:"Arab News",link:"https://www.arabnews.com/node/2604262"},
+  {id:"p18",category:"Storage & Grid",title:"Renewable‑scale battery deployment delivers resilience",date:"June 12, 2025",source:"Innovation News Network",link:"https://www.innovationnewsnetwork.com/how-battery-energy-storage-delivers-grid-resilience-amid-blackouts/58937/"},
+  {id:"p19",category:"Corporate",title:"Decision on Italiana Petroli refiner sale expected by end‑June",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/business/energy/decision-oil-refiner-italiana-petroli-sale-expected-around-end-june-sources-say-2025-06-12/"},
+  {id:"p20",category:"Events",title:"Trump to attend AI & energy summit in Pittsburgh on July 15",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/world/us/trump-attend-ai-energy-summit-pittsburgh-2025-06-12/"},
+  {id:"p21",category:"Regulation",title:"Developers to add 18.7 GW of natural gas capacity by 2028, EIA says",date:"June 11, 2025",source:"Reuters",link:"https://www.reuters.com/business/energy/developers-add-187-gw-natural-gas-fired-capacity-by-2028-eia-says-2025-06-11/"},
+  {id:"p22",category:"Policy",title:"Trump tax bill squeeze on clean power could raise energy bills",date:"June 10, 2025",source:"Reuters",link:"https://www.reuters.com/business/energy/trump-tax-bill-squeeze-clean-power-could-raise-energy-bills-2025-06-10/"},
+  {id:"p23",category:"Forecast",title:"US solar energy growth to slow as Washington priorities shift",date:"June 9, 2025",source:"Reuters",link:"https://www.reuters.com/sustainability/climate-energy/us-solar-energy-growth-slow-washington-priorities-shift-2025-06-09/"},
+  {id:"p24",category:"Investment",title:"Global energy investment set to hit record $3.3 trillion in 2025, IEA says",date:"June 5, 2025",source:"Reuters",link:"https://www.reuters.com/sustainability/boards-policy-regulation/global-energy-investment-set-hit-record-33-trillion-2025-iea-says-2025-06-05/"},
+  {id:"p25",category:"Policy",title:"NextEra CEO says renewables needed as bridge to expanding gas power",date:"June 10, 2025",source:"Reuters",link:"https://www.reuters.com/sustainability/climate-energy/nextera-ceo-says-renewables-needed-bridge-expanding-gas-power-2025-06-10/"},
+  {id:"p26",category:"International",title:"Tesla to take Japan virtual power plant business nationwide",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/business/autos-transportation/tesla-take-japan-virtual-power-plant-business-nationwide-nikkei-reports-2025-06-12/"},
+  {id:"p27",category:"Corporate",title:"NextNRG partners with Hudson Sustainable for U.S. infrastructure buildout",date:"June 12, 2025",source:"Globe Newswire",link:"https://www.tradingview.com/news/reuters.com%2C2025-06-12%3Anewsml_GNX5vDQcv%3A0-nextnrg-partners-with-13-billion-renewable-energy-investor-hudson-sustainable-group-to-accelerate-u-s-energy-infrastructure-buildout/"},
+  {id:"p28",category:"Battery Market",title:"Aqueous organic redox flow battery market report 2025",date:"June 12, 2025",source:"Yahoo Finance",link:"https://uk.finance.yahoo.com/news/aqueous-organic-redox-flow-battery-104900234.html"},
+  {id:"p29",category:"International",title:"French power prices jump as EDF probes reactor defect",date:"June 12, 2025",source:"Balkan Green Energy News",link:"https://balkangreenenergynews.com/french-power-prices-jump-as-edf-looks-into-possible-nuclear-reactor-defect/"},
+  {id:"p30",category:"Analysis",title:"Lessons from Spain and Portugal's massive blackout",date:"June 12, 2025",source:"Corporate Knights",link:"https://www.corporateknights.com/energy/lessons-spain-portugal-massive-blackout/"},
+  {id:"p31",category:"Research Digest",title:"Best in Energy – 12 June 2025",date:"June 12, 2025",source:"JKempEnergy.com",link:"https://jkempenergy.com/#12-june-2025"},
+  {id:"p32",category:"Technology",title:"This is your SolarWakeup for June 12th 2025",date:"June 12, 2025",source:"SolarWakeup",link:"https://www.solarwakeup.com/2025/06/12/this-is-your-solarwakeup-for-june-12th-2025/"},
+  {id:"p33",category:"Corporate History",title:"Great British Energy established under new Act",date:"May 15, 2025",source:"Wikipedia",link:"https://en.wikipedia.org/wiki/Great_British_Energy"},
+  {id:"p34",category:"Storage Infrastructure",title:"Largest battery power plants under construction globally",date:"June 7, 2025",source:"Wikipedia",link:"https://en.wikipedia.org/wiki/Battery_energy_storage_system"},
+  {id:"p35",category:"Project",title:"Reid Gardner Battery Energy Storage System now operational",date:"April 2024",source:"Wikipedia",link:"https://en.wikipedia.org/wiki/Reid_Gardner_Battery_Energy_Storage_System"},
+  {id:"p36",category:"Tech Overview",title:"Battery energy storage system – market development & deployment",date:"end of 2024",source:"Wikipedia",link:"https://en.wikipedia.org/wiki/Battery_energy_storage_system"},
+  {id:"p37",category:"Market Insight",title:"Choma Solar Power Station in Zambia under development",date:"May 2024",source:"Wikipedia",link:"https://en.wikipedia.org/wiki/Choma_Solar_Power_Station"},
+  {id:"p38",category:"International",title:"World Bank ends nuclear ban",date:"June 12, 2025",source:"Arab News",link:"https://www.arabnews.com/node/2604256/business-economy"},
+  {id:"p39",category:"Investment Strategy",title:"Why investors remain bullish on U.S. renewables",date:"June 12, 2025",source:"Financial Times",link:"https://www.ft.com/content/f8fd3b11-9d44-411a-9734-bcaaa52ee1ad"},
+  {id:"p40",category:"Macro Markets",title:"Morning Bid: Oil pops, dollar drops",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/business/finance/americas-oil-pops-dollar-drops-2025-06-12/"},
+  {id:"p41",category:"Policy",title:"Trump tax squeeze risks clean‑power bill cost hike",date:"June 10, 2025",source:"Reuters",link:"https://www.reuters.com/business/energy/trump-tax-bill-squeeze-clean-power-could-raise-energy-bills-2025-06-10/"},
+  {id:"p42",category:"Forecast",title:"U.S. solar growth to slow amid policy shift",date:"June 9, 2025",source:"Reuters",link:"https://www.reuters.com/sustainability/climate-energy/us-solar-energy-growth-slow-washington-priorities-shift-2025-06-09/"},
+  {id:"p43",category:"Strategy",title:"NextEra CEO: renewables as bridge to delayed gas power plants",date:"June 10, 2025",source:"Reuters",link:"https://www.reuters.com/sustainability/climate-energy/nextera-ceo-says-renewables-needed-bridge-expanding-gas-power-2025-06-10/"},
+  {id:"p44",category:"Energy Transition",title:"Tesla expands virtual power plant business in Japan",date:"June 12, 2025",source:"Reuters",link:"https://www.reuters.com/business/autos-transportation/tesla-take-japan-virtual-power-plant-business-nationwide-nikkei-reports-2025-06-12/"},
+  {id:"p45",category:"Corporate Expansion",title:"NextNRG & Hudson Sustainable partner on U.S. energy infrastructure",date:"June 12, 2025",source:"Globe Newswire",link:"https://www.tradingview.com/news/reuters.com%2C2025-06-12%3Anewsml_GNX5vDQcv%3A0-nextnrg-partners-with-13-billion-renewable-energy-investor-hudson-sustainable-group-to-accelerate-u-s-energy-infrastructure-buildout/"},
+  {id:"p46",category:"Market Report",title:"Aqueous organic redox flow battery report 2025",date:"June 12, 2025",source:"Yahoo Finance",link:"https://uk.finance.yahoo.com/news/aqueous-organic-redox-flow-battery-104900234.html"},
+  {id:"p47",category:"Sector Update",title:"French power prices spike as EDF probes reactor",date:"June 12, 2025",source:"Balkan Green Energy News",link:"https://balkangreenenergynews.com/french-power-prices-jump-as-edf-looks-into-possible-nuclear-reactor-defect/"},
+  {id:"p48",category:"Analysis",title:"Lessons from Iberian blackout: grid resilience",date:"June 12, 2025",source:"Corporate Knights",link:"https://www.corporateknights.com/energy/lessons-spain-portugal-massive-blackout/"},
+  {id:"p49",category:"Research Digest",title:"Best in Energy – 12 June 2025",date:"June 12, 2025",source:"JKempEnergy",link:"https://jkempenergy.com/#12-june-2025"},
+  {id:"p50",category:"SolarTech Daily",title:"SolarWakeup summary for June 12th 2025",date:"June 12, 2025",source:"SolarWakeup",link:"https://www.solarwakeup.com/2025/06/12/this-is-your-solarwakeup-for-june-12th-2025/"}
 ];
