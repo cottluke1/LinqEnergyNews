@@ -447,12 +447,12 @@
             if (logoutButtonMobile) logoutButtonMobile.addEventListener('click', handleLogout);
 
             function setActiveNavLink() {
-                const currentPath = window.location.pathname.split("/").pop() || "index.html";
+                const currentPath = window.location.pathname.split("/").pop() || "home.html";
                 const navLinks = document.querySelectorAll('#navbar nav.fixed a.nav-link, #navbar #mobile-menu a.nav-link');
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     const linkHref = link.getAttribute('href');
-                    if (linkHref === currentPath || ((currentPath === "index.html" || currentPath === "") && linkHref === "index.html")) {
+                    if (linkHref === currentPath || ((currentPath === "home.html" || currentPath === "") && linkHref === "home.html")) {
                         link.classList.add('active');
                     }
                 });
