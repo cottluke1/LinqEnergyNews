@@ -70,15 +70,15 @@ function updateAuthUI(user) {
         document.getElementById('profileLinkDesktop')?.classList.toggle('hidden', !isLoggedIn);
 
         const pic = document.getElementById('navProfilePic');
-        if (pic) {
+        if (navProfilePic) {
             if (isLoggedIn) {
-                const photo = user.photoURL || `https://placehold.co/40x40/2C2F33/EAEAEA?text=${user.email[0].toUpperCase()}`;
-                pic.src = photo;
-                pic.style.display = 'block';
+                navProfilePic.src = user.photoURL || `https://placehold.co/40x40/2C2F33/EAEAEA?text=${user.email[0].toUpperCase()}`;
+                navProfilePic.classList.remove('hidden');
             } else {
-                pic.style.display = 'none';
+                navProfilePic.classList.add('hidden');
             }
         }
+
 
         // ✅ Mobile — make sure these are updating AFTER DOM is ready
         document.getElementById('authLinkMobile')?.classList.toggle('hidden', isLoggedIn);
