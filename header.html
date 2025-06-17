@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome is kept for the auth icons at the bottom, can be replaced if you have SVGs for them -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
@@ -21,49 +22,62 @@
             border-bottom: 1px solid #2a2a2a;
         }
 
-        /* Modern glass button style */
-        .go-premium-btn-glass {
-            background: rgba(40, 40, 40, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.2s ease;
+        /* Neon Blue Glow effect for the premium button */
+        @keyframes neon-glow {
+            from {
+                box-shadow: 0 0 5px #0077ff, 0 0 10px #0077ff, 0 0 15px #0077ff;
+            }
+            to {
+                box-shadow: 0 0 10px #0077ff, 0 0 20px #0077ff, 0 0 30px #0077ff;
+            }
         }
-
-        .go-premium-btn-glass:hover {
-            background: rgba(50, 50, 50, 0.8);
-            border-color: rgba(255, 255, 255, 0.25);
+        .go-premium-btn-neon {
+            background: rgba(0, 119, 255, 0.1);
+            border: 1px solid rgba(0, 119, 255, 0.5);
+            color: #ccdeff;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 5px #0077ff, 0 0 10px #0077ff, 0 0 15px #0077ff;
+            animation: neon-glow 1.5s infinite alternate ease-in-out;
+        }
+        .go-premium-btn-neon:hover {
+            background: rgba(0, 119, 255, 0.2);
         }
         
-        /* Slideout Menu styling to match the image */
+        /* Matching glow for the profile picture border */
+        .profile-pic-glow {
+            border: 2px solid #2a2a2a;
+            box-shadow: 0 0 8px rgba(0, 119, 255, 0.7);
+        }
+        
+        /* Slideout Menu styling */
         #mobile-slideout-menu {
             background-color: #000000;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
         #menu-overlay {
             transition: opacity 0.3s ease-in-out;
         }
 
-        .slideout-link {
-            transition: background-color 0.2s ease;
+        /* Custom SVG Icon Styling */
+        .slideout-link svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 1.25rem;
+            color: #9ca3af; /* text-gray-400 */
         }
-        .slideout-link:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        /* Profile picture styling */
-        #navProfilePic, #slideoutProfilePic {
-            object-fit: cover;
+        .slideout-link:hover svg {
+            color: #ffffff;
         }
     </style>
 </head>
 <body class="bg-gray-900 text-white p-10">
 
 <!-- 
-    START: REDESIGNED HEADER V2
-    - Simple solid black desktop header.
-    - New mobile menu layout based on the provided image.
-    - Modern glass-style CTA button.
+    START: REDESIGNED HEADER V3
+    - Neon blue glowing CTA button.
+    - Restructured mobile menu with custom SVG icons.
+    - Mobile menu button now toggles the menu open and closed.
 -->
 <nav class="header-nav fixed top-0 left-0 w-full z-50">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,9 +85,7 @@
       
       <!-- Logo / Site Name -->
       <div class="flex-shrink-0">
-        <a href="index.html" class="text-2xl font-bold text-white tracking-wider">
-          Linq
-        </a>
+        <a href="index.html" class="text-2xl font-bold text-white tracking-wider">Linq</a>
       </div>
 
       <!-- Desktop Navigation Links -->
@@ -90,20 +102,19 @@
       <!-- Right side actions: CTA, Auth, and Mobile Menu Button -->
       <div class="flex items-center">
         <div class="hidden md:flex items-center space-x-4">
-          <a href="linqplus.html" class="go-premium-btn-glass text-white font-semibold py-2 px-4 rounded-md text-sm">
-            Go Premium
-          </a>
+          <a href="linqplus.html" class="go-premium-btn-neon py-2 px-4 rounded-md text-sm">Go Premium</a>
           <!-- IMPORTANT: Login/Profile links with `hidden` class for JS to toggle -->
           <a href="login.html" id="authLinkDesktopLogin" class="hidden text-gray-300 hover:text-white font-medium text-sm">Login</a>
-          <a href="profile.html" id="profileLinkDesktop" class="hidden rounded-full hover:opacity-80 transition-opacity" title="My Profile">
-            <img id="navProfilePic" src="https://placehold.co/36x36/2C2F33/EAEAEA?text=U" alt="User Profile" class="w-9 h-9 rounded-full border-2 border-gray-700 hover:border-gray-500">
+          <a href="profile.html" id="profileLinkDesktop" class="hidden rounded-full" title="My Profile">
+            <img id="navProfilePic" src="https://placehold.co/36x36/2C2F33/EAEAEA?text=U" alt="User Profile" class="w-9 h-9 rounded-full profile-pic-glow">
           </a>
         </div>
-        <!-- Mobile menu button -->
+        <!-- Mobile menu button with both open and close icons -->
         <div class="md:hidden">
             <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none">
                 <span class="sr-only">Open main menu</span>
-                <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                <svg id="menu-open-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                <svg id="menu-close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
         </div>
       </div>
@@ -111,13 +122,12 @@
   </div>
 </nav>
 
-<!-- Slide-out Mobile Menu (New Design) -->
+<!-- Slide-out Mobile Menu (New Design V3) -->
 <div id="menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 z-30"></div>
 <div id="mobile-slideout-menu" class="fixed top-0 right-0 h-full w-80 bg-black z-40 transform translate-x-full shadow-2xl">
     <div class="p-5 flex flex-col h-full">
         <!-- Menu Header -->
         <div class="flex justify-between items-start mb-4">
-            <!-- User Info Section (visible when logged in) -->
             <div id="slideout-user-info" class="hidden">
                 <a href="profile.html" class="flex flex-col space-y-1">
                     <img id="slideoutProfilePic" src="https://placehold.co/40x40/2C2F33/EAEAEA?text=U" class="w-10 h-10 rounded-full object-cover">
@@ -125,21 +135,46 @@
                     <p id="slideoutEmail" class="text-sm text-gray-500 leading-tight">@email_handle</p>
                 </a>
             </div>
-            <button id="mobile-menu-close-button" class="text-gray-500 hover:text-white text-3xl">&times;</button>
         </div>
         
         <!-- Navigation Links -->
         <nav class="flex flex-col space-y-1 flex-grow">
-            <a href="profile.html" id="bottomProfileLinkMobile" class="slideout-link hidden text-white block px-3 py-3 rounded-md text-lg font-bold"><i class="fas fa-user w-8 mr-3 text-xl"></i>Profile</a>
-            <a href="linqplus.html" class="slideout-link text-white block px-3 py-3 rounded-md text-lg font-bold"><i class="fa-brands fa-xing w-8 mr-3 text-xl"></i>Premium</a>
-            <a href="linqai.html" class="slideout-link text-white block px-3 py-3 rounded-md text-lg font-bold"><i class="far fa-comment-dots w-8 mr-3 text-xl"></i>Linq AI</a>
-            <a href="favorites.html" class="slideout-link text-white block px-3 py-3 rounded-md text-lg font-bold"><i class="far fa-bookmark w-8 mr-3 text-xl"></i>Bookmarks</a>
+            <!-- Section 1 -->
+            <a href="index.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" /></svg>
+                News
+            </a>
+            <a href="community.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zm-7.5 2.962c0-.539.18-1.03.5-1.45m-2.1-1.11a9.094 9.094 0 01-3.742-.479 3 3 0 014.682-2.72M6.305 16.685a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0z" /></svg>
+                Community
+            </a>
+            <a href="favorites.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.5 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" /></svg>
+                Bookmarks
+            </a>
+            
+            <hr class="border-gray-800 my-3">
+            
+            <!-- Section 2 -->
+             <a href="linqai.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" /></svg>
+                Linq AI
+            </a>
+            <a href="earnings.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-3.75-.625m3.75.625l-6.25 3.75" /></svg>
+                Earnings
+            </a>
+            <a href="linqplus.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345h5.518a.562.562 0 01.32.959l-4.435 3.223a.563.563 0 00-.18.634l2.125 5.111a.562.562 0 01-.852.654l-4.435-3.223a.563.563 0 00-.671 0l-4.435 3.223a.562.562 0 01-.852-.654l2.125-5.111a.563.563 0 00-.18-.634l-4.435-3.223a.562.562 0 01.32-.959h5.518a.563.563 0 00.475-.345L11.48 3.5z" /></svg>
+                Premium
+            </a>
         </nav>
 
         <!-- Footer Auth Links -->
         <div class="mt-auto">
-             <hr class="border-gray-800 my-4">
-            <!-- IMPORTANT: Auth links with `hidden` class for JS to toggle -->
+             <hr class="border-gray-800 my-3">
+             <!-- Section 3 -->
+            <a href="profile.html" id="bottomProfileLinkMobile" class="slideout-link hidden text-white block px-3 py-3 rounded-md text-lg font-bold"><i class="fas fa-user-circle w-8 mr-3 text-xl"></i>Profile</a>
             <a href="login.html" id="authLinkMobile" class="slideout-link text-gray-400 hover:text-white block px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-in-alt w-6 mr-2"></i>Login</a>
             <a href="#" id="logoutButtonMobile" class="slideout-link hidden text-red-500 hover:text-red-400 block px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-out-alt w-6 mr-2"></i>Logout</a>
         </div>
@@ -148,9 +183,82 @@
 <!-- END: REDESIGNED HEADER -->
 
 
-<!-- Include the existing headerManager.js. No changes needed to it. -->
-<!-- Make sure this file exists in the correct path -->
-<script src="headerManager.js" defer></script>
+<!-- 
+    NOTE: The script below contains the updated logic for the mobile menu toggle.
+    It replaces the need for an external headerManager.js file for this functionality.
+    Your existing Firebase auth logic should be added to the auth.onAuthStateChanged function.
+-->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Mobile Menu Toggle Logic ---
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeButton = document.getElementById('mobile-menu-close-button');
+    const overlay = document.getElementById('menu-overlay');
+    const slideoutMenu = document.getElementById('mobile-slideout-menu');
+    const openIcon = document.getElementById('menu-open-icon');
+    const closeIcon = document.getElementById('menu-close-icon');
+
+    const toggleMenu = () => {
+        const isMenuOpen = !slideoutMenu.classList.contains('translate-x-full');
+        if (isMenuOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    };
+    
+    const openMenu = () => {
+        slideoutMenu.classList.remove('translate-x-full');
+        overlay.classList.remove('hidden');
+        openIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+    };
+
+    const closeMenu = () => {
+        slideoutMenu.classList.add('translate-x-full');
+        overlay.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+    };
+
+    mobileMenuButton?.addEventListener('click', toggleMenu);
+    closeButton?.addEventListener('click', closeMenu);
+    overlay?.addEventListener('click', closeMenu);
+
+    // --- Firebase Auth UI Logic ---
+    // This assumes you have Firebase initialized elsewhere in your project.
+    // If not, you need to add your Firebase initialization config here.
+    // const auth = firebase.auth();
+    
+    // auth.onAuthStateChanged(user => {
+    //     const isLoggedIn = !!user;
+
+    //     // Desktop Elements
+    //     document.getElementById('authLinkDesktopLogin')?.classList.toggle('hidden', isLoggedIn);
+    //     document.getElementById('profileLinkDesktop')?.classList.toggle('hidden', !isLoggedIn);
+    //     const navProfilePic = document.getElementById('navProfilePic');
+    //     if(navProfilePic) {
+    //         navProfilePic.src = user?.photoURL || 'https://placehold.co/36x36/2C2F33/EAEAEA?text=U';
+    //     }
+
+    //     // Mobile Slideout Elements
+    //     document.getElementById('authLinkMobile')?.classList.toggle('hidden', isLoggedIn);
+    //     document.getElementById('bottomProfileLinkMobile')?.classList.toggle('hidden', !isLoggedIn);
+    //     document.getElementById('logoutButtonMobile')?.classList.toggle('hidden', !isLoggedIn);
+    //     const slideoutUserInfo = document.getElementById('slideout-user-info');
+    //     if(slideoutUserInfo) {
+    //         slideoutUserInfo.classList.toggle('hidden', !isLoggedIn);
+    //         if(isLoggedIn) {
+    //             document.getElementById('slideoutProfilePic').src = user.photoURL || 'https://placehold.co/40x40/2C2F33/EAEAEA?text=U';
+    //             document.getElementById('slideoutDisplayName').textContent = user.displayName || 'User';
+    //             document.getElementById('slideoutEmail').textContent = user.email ? `@${user.email.split('@')[0]}` : '@user';
+    //         }
+    //     }
+    // });
+});
+</script>
 
 </body>
 </html>
