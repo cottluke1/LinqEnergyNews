@@ -36,22 +36,19 @@
             font-weight: 700; /* bold */
         }
 
-        /* Crisp, static neon blue glow for the premium button */
+        /* Crisp, clean neon blue border effect */
         .go-premium-btn-neon {
-            background: rgba(0, 119, 255, 0.1);
-            border: 1px solid rgba(0, 119, 255, 0.5);
-            color: #ccdeff;
+            background: transparent;
+            border: 1px solid #005fcc;
+            color: #aaccff;
             font-weight: 600;
             transition: all 0.2s ease;
-            box-shadow: 0 0 8px rgba(0, 119, 255, 0.8), 0 0 15px rgba(0, 119, 255, 0.6);
+            box-shadow: 0 0 5px rgba(0, 119, 255, 0.8), inset 0 0 5px rgba(0, 119, 255, 0.5);
         }
         .go-premium-btn-neon:hover {
-            background: rgba(0, 119, 255, 0.2);
-        }
-        
-        .profile-pic-glow {
-            border: 2px solid #2a2a2a;
-            box-shadow: 0 0 8px rgba(0, 119, 255, 0.7);
+            background: rgba(0, 119, 255, 0.1);
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 119, 255, 1), inset 0 0 8px rgba(0, 119, 255, 0.8);
         }
         
         /* Slideout Menu styling */
@@ -91,10 +88,10 @@
 <body class="bg-gray-900 text-white p-10">
 
 <!-- 
-    START: REDESIGNED HEADER V4
-    - Centered desktop navigation with new hover/active styles.
-    - Crisp static neon glow on CTA button.
-    - Updated mobile menu with SOLID icons and improved header layout.
+    START: REDESIGNED HEADER V5
+    - Crisp LED border on CTA button.
+    - Improved mobile menu icons and layout.
+    - Removed glow from desktop profile picture.
 -->
 <nav class="header-nav fixed top-0 left-0 w-full z-50">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -125,7 +122,8 @@
           <!-- IMPORTANT: Login/Profile links with `hidden` class for JS to toggle -->
           <a href="login.html" id="authLinkDesktopLogin" class="hidden text-gray-300 hover:text-white font-medium text-sm">Login</a>
           <a href="profile.html" id="profileLinkDesktop" class="hidden rounded-full" title="My Profile">
-            <img id="navProfilePic" src="https://placehold.co/36x36/2C2F33/EAEAEA?text=U" alt="User Profile" class="w-9 h-9 rounded-full profile-pic-glow">
+            <!-- REMOVED `profile-pic-glow` class -->
+            <img id="navProfilePic" src="https://placehold.co/36x36/1a1a1a/ffffff?text=U" alt="User Profile" class="w-9 h-9 rounded-full border-2 border-gray-700">
           </a>
         </div>
         <!-- Mobile menu button -->
@@ -141,28 +139,26 @@
   </div>
 </nav>
 
-<!-- Slide-out Mobile Menu (New Design V4) -->
+<!-- Slide-out Mobile Menu (New Design V5) -->
 <div id="menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 z-30"></div>
 <div id="mobile-slideout-menu" class="fixed top-0 right-0 h-full w-80 bg-black z-40 transform translate-x-full shadow-2xl">
     <div class="p-5 flex flex-col h-full">
-        <!-- Menu Header -->
-        <div class="flex justify-between items-center mb-4">
-            <div id="slideout-user-info" class="hidden">
-                <a href="profile.html" class="flex items-center space-x-3">
-                    <img id="slideoutProfilePic" src="https://placehold.co/40x40/2C2F33/EAEAEA?text=U" class="w-10 h-10 rounded-full object-cover">
-                    <div>
-                        <p id="slideoutDisplayName" class="font-bold text-white leading-tight">User Name</p>
-                        <p id="slideoutEmail" class="text-sm text-gray-500 leading-tight">@email_handle</p>
-                    </div>
-                </a>
-            </div>
+        <!-- Menu Header - MOVED TO TOP -->
+        <div id="slideout-user-info" class="hidden mb-6 pb-4 border-b border-gray-800">
+            <a href="profile.html" class="flex items-center space-x-3">
+                <img id="slideoutProfilePic" src="https://placehold.co/40x40/1a1a1a/ffffff?text=U" class="w-10 h-10 rounded-full object-cover">
+                <div>
+                    <p id="slideoutDisplayName" class="font-bold text-white leading-tight">User Name</p>
+                    <p id="slideoutEmail" class="text-sm text-gray-500 leading-tight">@email_handle</p>
+                </div>
+            </a>
         </div>
         
         <!-- Navigation Links -->
         <nav class="flex flex-col space-y-1 flex-grow">
             <!-- Section 1 -->
             <a href="index.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.522c0 .323.21.6.5.707.556.174 1.14.323 1.75.433V4.533zM12.75 20.636V4.533a9.707 9.707 0 015.25-1.533c1.16 0 2.27.194 3.25.555a.75.75 0 01.5.707v14.522c0 .323-.21.6-.5.707a9.735 9.735 0 01-3.25.433c-.61.11-1.194.259-1.75.433z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 2.25a.75.75 0 000 1.5v16.5a.75.75 0 00.75.75h13.5a.75.75 0 00.75-.75V3.75a.75.75 0 000-1.5h-15zM9 6a.75.75 0 000 1.5h6a.75.75 0 000-1.5H9z" /></svg>
                 News
             </a>
             <a href="community.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
@@ -195,7 +191,7 @@
         <div class="mt-auto">
              <hr class="border-gray-800 my-3">
              <!-- Section 3 -->
-            <a href="profile.html" id="bottomProfileLinkMobile" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold"><i class="fas fa-user-circle"></i>Profile</a>
+            <a href="profile.html" id="bottomProfileLinkMobile" class="slideout-link hidden flex items-center text-white px-3 py-3 rounded-md text-lg font-bold"><i class="fas fa-user-circle"></i>Profile</a>
             <a href="login.html" id="authLinkMobile" class="slideout-link flex items-center text-gray-400 hover:text-white px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-in-alt"></i>Login</a>
             <a href="#" id="logoutButtonMobile" class="slideout-link hidden flex items-center text-red-500 hover:text-red-400 px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-out-alt"></i>Logout</a>
         </div>
@@ -243,7 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Desktop Active Nav Link ---
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll('.nav-link-desktop').forEach(link => {
-        // Use getAttribute to get the raw href value
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath) {
             link.classList.add('active');
@@ -266,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('profileLinkDesktop')?.classList.toggle('hidden', !isLoggedIn);
         const navProfilePic = document.getElementById('navProfilePic');
         if(navProfilePic) {
-            navProfilePic.src = user?.photoURL || 'https://placehold.co/36x36/2C2F33/EAEAEA?text=U';
+            navProfilePic.src = user?.photoURL || 'https://placehold.co/36x36/1a1a1a/ffffff?text=U';
         }
 
         // Mobile Slideout Elements
@@ -277,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(slideoutUserInfo) {
             slideoutUserInfo.classList.toggle('hidden', !isLoggedIn);
             if(isLoggedIn) {
-                document.getElementById('slideoutProfilePic').src = user.photoURL || 'https://placehold.co/40x40/2C2F33/EAEAEA?text=U';
+                document.getElementById('slideoutProfilePic').src = user.photoURL || 'https://placehold.co/40x40/1a1a1a/ffffff?text=U';
                 document.getElementById('slideoutDisplayName').textContent = user.displayName || 'User';
                 document.getElementById('slideoutEmail').textContent = user.email ? `@${user.email.split('@')[0]}` : '@user';
             }
