@@ -15,28 +15,21 @@
             background-color: #05080f; 
         }
 
-        /* Simple, solid black header */
         .header-nav {
             background-color: #000000;
             border-bottom: 1px solid #2a2a2a;
         }
 
-        /* Desktop nav link hover/active state */
         .nav-link-desktop {
-            color: #9ca3af; /* gray-400 */
+            color: #9ca3af;
             font-weight: 500;
             transition: color 0.2s ease, font-weight 0.2s ease;
         }
-        .nav-link-desktop:hover {
+        .nav-link-desktop:hover, .nav-link-desktop.active {
             color: #ffffff;
-            font-weight: 700; /* bold */
-        }
-        .nav-link-desktop.active {
-            color: #ffffff;
-            font-weight: 700; /* bold */
+            font-weight: 700;
         }
 
-        /* Crisp, clean neon blue border effect */
         .go-premium-btn-neon {
             background: transparent;
             border: 1px solid #005fcc;
@@ -51,7 +44,6 @@
             box-shadow: 0 0 10px rgba(0, 119, 255, 1), inset 0 0 8px rgba(0, 119, 255, 0.8);
         }
         
-        /* Slideout Menu styling */
         #mobile-slideout-menu {
             background-color: #000000;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -60,12 +52,11 @@
             transition: opacity 0.3s ease-in-out;
         }
 
-        /* Custom Solid SVG Icon Styling */
         .slideout-link svg {
             width: 24px;
             height: 24px;
             margin-right: 1.25rem;
-            color: #9ca3af; /* text-gray-400 */
+            color: #9ca3af;
             transition: color 0.2s ease;
         }
         .slideout-link:hover {
@@ -74,8 +65,7 @@
         .slideout-link:hover svg, .slideout-link:hover i {
             color: #ffffff;
         }
-        /* FA icons need specific targeting */
-         .slideout-link i {
+        .slideout-link i {
             width: 24px;
             text-align: center;
             margin-right: 1.25rem;
@@ -97,14 +87,12 @@
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-center h-16">
       
-      <!-- Left: Logo (Positioned) -->
+      <!-- Left: Logo -->
       <div class="absolute left-4 flex items-center">
-        <div class="flex-shrink-0">
-          <a href="index.html" class="text-2xl font-bold text-white tracking-wider">Linq</a>
-        </div>
+        <a href="index.html" class="text-2xl font-bold text-white tracking-wider">Linq</a>
       </div>
 
-      <!-- Center: Desktop Navigation Links -->
+      <!-- Center: Desktop Navigation -->
       <div class="hidden md:block">
         <div class="flex items-baseline space-x-4">
           <a href="index.html" class="nav-link-desktop px-3 py-2 rounded-md text-sm">News</a>
@@ -115,14 +103,12 @@
         </div>
       </div>
 
-      <!-- Right: Actions (Positioned) -->
+      <!-- Right: Actions -->
       <div class="absolute right-4 flex items-center">
         <div class="hidden md:flex items-center space-x-4">
           <a href="linqplus.html" class="go-premium-btn-neon py-2 px-4 rounded-md text-sm">Go Premium</a>
-          <!-- IMPORTANT: Login/Profile links with `hidden` class for JS to toggle -->
           <a href="login.html" id="authLinkDesktopLogin" class="hidden text-gray-300 hover:text-white font-medium text-sm">Login</a>
           <a href="profile.html" id="profileLinkDesktop" class="hidden rounded-full" title="My Profile">
-            <!-- REMOVED `profile-pic-glow` class -->
             <img id="navProfilePic" src="https://placehold.co/36x36/1a1a1a/ffffff?text=U" alt="User Profile" class="w-9 h-9 rounded-full border-2 border-gray-700">
           </a>
         </div>
@@ -143,29 +129,31 @@
 <div id="menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 z-30"></div>
 <div id="mobile-slideout-menu" class="fixed top-0 right-0 h-full w-80 bg-black z-40 transform translate-x-full shadow-2xl">
     <div class="p-5 flex flex-col h-full">
-        <!-- Menu Header - MOVED TO TOP -->
-        <div id="slideout-user-info" class="hidden mb-6 pb-4 border-b border-gray-800">
-            <a href="profile.html" class="flex items-center space-x-3">
-                <img id="slideoutProfilePic" src="https://placehold.co/40x40/1a1a1a/ffffff?text=U" class="w-10 h-10 rounded-full object-cover">
-                <div>
-                    <p id="slideoutDisplayName" class="font-bold text-white leading-tight">User Name</p>
-                    <p id="slideoutEmail" class="text-sm text-gray-500 leading-tight">@email_handle</p>
-                </div>
-            </a>
+        <!-- Menu Header: User Info -->
+        <div class="mb-6 pb-4 border-b border-gray-800">
+             <div id="slideout-user-info" class="hidden">
+                <a href="profile.html" class="flex items-center space-x-3">
+                    <img id="slideoutProfilePic" src="https://placehold.co/40x40/1a1a1a/ffffff?text=U" class="w-10 h-10 rounded-full object-cover">
+                    <div>
+                        <p id="slideoutDisplayName" class="font-bold text-white leading-tight">User Name</p>
+                        <p id="slideoutEmail" class="text-sm text-gray-500 leading-tight">@email_handle</p>
+                    </div>
+                </a>
+            </div>
         </div>
         
         <!-- Navigation Links -->
         <nav class="flex flex-col space-y-1 flex-grow">
             <!-- Section 1 -->
             <a href="index.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 2.25a.75.75 0 000 1.5v16.5a.75.75 0 00.75.75h13.5a.75.75 0 00.75-.75V3.75a.75.75 0 000-1.5h-15zM9 6a.75.75 0 000 1.5h6a.75.75 0 000-1.5H9z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V3.375c0-1.036-.84-1.875-1.875-1.875H5.625zM12 18a.75.75 0 000-1.5H7.5a.75.75 0 000 1.5H12zM15 13.5a.75.75 0 01-.75.75H7.5a.75.75 0 010-1.5h6.75a.75.75 0 01.75.75zM15 9a.75.75 0 000-1.5H7.5a.75.75 0 000 1.5H15z" /></svg>
                 News
             </a>
             <a href="community.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63A13.067 13.067 0 0113.5 21.75h-2.118c-.106.014-.214.025-.322.036a13.067 13.067 0 01-5.115-1.762a.75.75 0 01-.363-.63V19.125zM17.25 21.75a13.067 13.067 0 01-2.148-1.047.75.75 0 01-.39-.63V19.125a7.125 7.125 0 011.666-4.508 3.375 3.375 0 016.166 0 7.125 7.125 0 011.666 4.508v.003l-.001.119a.75.75 0 01-.39.63A13.067 13.067 0 0119.5 21.75h-2.25z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M4.848 2.771A49.144 49.144 0 0112 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 01-3.476.383.39.39 0 00-.297.15l-2.755 4.133a.75.75 0 01-1.248 0l-2.755-4.133a.39.39 0 00-.297-.15 48.902 48.902 0 01-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.74c0-1.946 1.37-3.68 3.348-3.97z" clip-rule="evenodd" /></svg>
                 Community
             </a>
-            <a href="favorites.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
+             <a href="favorites.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z" clip-rule="evenodd" /></svg>
                 Bookmarks
             </a>
@@ -174,7 +162,7 @@
             
             <!-- Section 2 -->
              <a href="linqai.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM9.515 8.355c.4-1.32 2.545-1.32 2.949 0l.475 1.565c.08.265.31.465.59.5l1.625.235c1.375.2 1.95 1.845.925 2.825l-1.18 1.145a.625.625 0 00-.18.55l.28 1.585c.245 1.355-1.155 2.4-2.385 1.755l-1.46-.775a.625.625 0 00-.58 0l-1.46.775c-1.23.645-2.63-0.4-2.385-1.755l.28-1.585a.625.625 0 00-.18-.55l-1.18-1.145c-1.025-.98-0.45-2.625.925-2.825l1.625-.235a.625.625 0 00.59-.5l.475-1.565z" clip-rule="evenodd" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.522c0 .323.21.6.5.707.556.174 1.14.323 1.75.433V4.533zM12.75 20.636V4.533a9.707 9.707 0 015.25-1.533c1.16 0 2.27.194 3.25.555a.75.75 0 01.5.707v14.522c0 .323-.21.6-.5.707a9.735 9.735 0 01-3.25.433c-.61.11-1.194.259-1.75.433z" /></svg>
                 Linq AI
             </a>
             <a href="earnings.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
@@ -191,7 +179,10 @@
         <div class="mt-auto">
              <hr class="border-gray-800 my-3">
              <!-- Section 3 -->
-            <a href="profile.html" id="bottomProfileLinkMobile" class="slideout-link hidden flex items-center text-white px-3 py-3 rounded-md text-lg font-bold"><i class="fas fa-user-circle"></i>Profile</a>
+            <a href="profile.html" id="bottomProfileLinkMobile" class="slideout-link hidden flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" /></svg>
+                Profile
+            </a>
             <a href="login.html" id="authLinkMobile" class="slideout-link flex items-center text-gray-400 hover:text-white px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-in-alt"></i>Login</a>
             <a href="#" id="logoutButtonMobile" class="slideout-link hidden flex items-center text-red-500 hover:text-red-400 px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-out-alt"></i>Logout</a>
         </div>
@@ -244,7 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.add('active');
         }
     });
-
 
     // --- Firebase Auth UI Logic ---
     // This is a placeholder for your actual Firebase logic.
