@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome is kept for the auth icons at the bottom, can be replaced if you have SVGs for them -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
@@ -22,29 +21,34 @@
             border-bottom: 1px solid #2a2a2a;
         }
 
-        /* Neon Blue Glow effect for the premium button */
-        @keyframes neon-glow {
-            from {
-                box-shadow: 0 0 5px #0077ff, 0 0 10px #0077ff, 0 0 15px #0077ff;
-            }
-            to {
-                box-shadow: 0 0 10px #0077ff, 0 0 20px #0077ff, 0 0 30px #0077ff;
-            }
+        /* Desktop nav link hover/active state */
+        .nav-link-desktop {
+            color: #9ca3af; /* gray-400 */
+            font-weight: 500;
+            transition: color 0.2s ease, font-weight 0.2s ease;
         }
+        .nav-link-desktop:hover {
+            color: #ffffff;
+            font-weight: 700; /* bold */
+        }
+        .nav-link-desktop.active {
+            color: #ffffff;
+            font-weight: 700; /* bold */
+        }
+
+        /* Crisp, static neon blue glow for the premium button */
         .go-premium-btn-neon {
             background: rgba(0, 119, 255, 0.1);
             border: 1px solid rgba(0, 119, 255, 0.5);
             color: #ccdeff;
             font-weight: 600;
             transition: all 0.2s ease;
-            box-shadow: 0 0 5px #0077ff, 0 0 10px #0077ff, 0 0 15px #0077ff;
-            animation: neon-glow 1.5s infinite alternate ease-in-out;
+            box-shadow: 0 0 8px rgba(0, 119, 255, 0.8), 0 0 15px rgba(0, 119, 255, 0.6);
         }
         .go-premium-btn-neon:hover {
             background: rgba(0, 119, 255, 0.2);
         }
         
-        /* Matching glow for the profile picture border */
         .profile-pic-glow {
             border: 2px solid #2a2a2a;
             box-shadow: 0 0 8px rgba(0, 119, 255, 0.7);
@@ -59,48 +63,63 @@
             transition: opacity 0.3s ease-in-out;
         }
 
-        /* Custom SVG Icon Styling */
+        /* Custom Solid SVG Icon Styling */
         .slideout-link svg {
             width: 24px;
             height: 24px;
             margin-right: 1.25rem;
             color: #9ca3af; /* text-gray-400 */
+            transition: color 0.2s ease;
         }
-        .slideout-link:hover svg {
+        .slideout-link:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .slideout-link:hover svg, .slideout-link:hover i {
             color: #ffffff;
+        }
+        /* FA icons need specific targeting */
+         .slideout-link i {
+            width: 24px;
+            text-align: center;
+            margin-right: 1.25rem;
+            color: #9ca3af;
+            font-size: 20px;
+            transition: color 0.2s ease;
         }
     </style>
 </head>
 <body class="bg-gray-900 text-white p-10">
 
 <!-- 
-    START: REDESIGNED HEADER V3
-    - Neon blue glowing CTA button.
-    - Restructured mobile menu with custom SVG icons.
-    - Mobile menu button now toggles the menu open and closed.
+    START: REDESIGNED HEADER V4
+    - Centered desktop navigation with new hover/active styles.
+    - Crisp static neon glow on CTA button.
+    - Updated mobile menu with SOLID icons and improved header layout.
 -->
 <nav class="header-nav fixed top-0 left-0 w-full z-50">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
+    <div class="relative flex items-center justify-center h-16">
       
-      <!-- Logo / Site Name -->
-      <div class="flex-shrink-0">
-        <a href="index.html" class="text-2xl font-bold text-white tracking-wider">Linq</a>
-      </div>
-
-      <!-- Desktop Navigation Links -->
-      <div class="hidden md:block">
-        <div class="ml-10 flex items-baseline space-x-2">
-          <a href="index.html" class="text-gray-400 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">News</a>
-          <a href="community.html" class="text-gray-400 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Community</a>
-          <a href="linqai.html" class="text-gray-400 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Linq AI</a>
-          <a href="earnings.html" class="text-gray-400 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Earnings</a>
-          <a href="favorites.html" class="text-gray-400 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Bookmarks</a>
+      <!-- Left: Logo (Positioned) -->
+      <div class="absolute left-4 flex items-center">
+        <div class="flex-shrink-0">
+          <a href="index.html" class="text-2xl font-bold text-white tracking-wider">Linq</a>
         </div>
       </div>
 
-      <!-- Right side actions: CTA, Auth, and Mobile Menu Button -->
-      <div class="flex items-center">
+      <!-- Center: Desktop Navigation Links -->
+      <div class="hidden md:block">
+        <div class="flex items-baseline space-x-4">
+          <a href="index.html" class="nav-link-desktop px-3 py-2 rounded-md text-sm">News</a>
+          <a href="community.html" class="nav-link-desktop px-3 py-2 rounded-md text-sm">Community</a>
+          <a href="linqai.html" class="nav-link-desktop px-3 py-2 rounded-md text-sm">Linq AI</a>
+          <a href="earnings.html" class="nav-link-desktop px-3 py-2 rounded-md text-sm">Earnings</a>
+          <a href="favorites.html" class="nav-link-desktop px-3 py-2 rounded-md text-sm">Bookmarks</a>
+        </div>
+      </div>
+
+      <!-- Right: Actions (Positioned) -->
+      <div class="absolute right-4 flex items-center">
         <div class="hidden md:flex items-center space-x-4">
           <a href="linqplus.html" class="go-premium-btn-neon py-2 px-4 rounded-md text-sm">Go Premium</a>
           <!-- IMPORTANT: Login/Profile links with `hidden` class for JS to toggle -->
@@ -109,7 +128,7 @@
             <img id="navProfilePic" src="https://placehold.co/36x36/2C2F33/EAEAEA?text=U" alt="User Profile" class="w-9 h-9 rounded-full profile-pic-glow">
           </a>
         </div>
-        <!-- Mobile menu button with both open and close icons -->
+        <!-- Mobile menu button -->
         <div class="md:hidden">
             <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none">
                 <span class="sr-only">Open main menu</span>
@@ -122,17 +141,19 @@
   </div>
 </nav>
 
-<!-- Slide-out Mobile Menu (New Design V3) -->
+<!-- Slide-out Mobile Menu (New Design V4) -->
 <div id="menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 z-30"></div>
 <div id="mobile-slideout-menu" class="fixed top-0 right-0 h-full w-80 bg-black z-40 transform translate-x-full shadow-2xl">
     <div class="p-5 flex flex-col h-full">
         <!-- Menu Header -->
-        <div class="flex justify-between items-start mb-4">
+        <div class="flex justify-between items-center mb-4">
             <div id="slideout-user-info" class="hidden">
-                <a href="profile.html" class="flex flex-col space-y-1">
+                <a href="profile.html" class="flex items-center space-x-3">
                     <img id="slideoutProfilePic" src="https://placehold.co/40x40/2C2F33/EAEAEA?text=U" class="w-10 h-10 rounded-full object-cover">
-                    <p id="slideoutDisplayName" class="font-bold text-white leading-tight pt-2">User Name</p>
-                    <p id="slideoutEmail" class="text-sm text-gray-500 leading-tight">@email_handle</p>
+                    <div>
+                        <p id="slideoutDisplayName" class="font-bold text-white leading-tight">User Name</p>
+                        <p id="slideoutEmail" class="text-sm text-gray-500 leading-tight">@email_handle</p>
+                    </div>
                 </a>
             </div>
         </div>
@@ -141,15 +162,15 @@
         <nav class="flex flex-col space-y-1 flex-grow">
             <!-- Section 1 -->
             <a href="index.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.522c0 .323.21.6.5.707.556.174 1.14.323 1.75.433V4.533zM12.75 20.636V4.533a9.707 9.707 0 015.25-1.533c1.16 0 2.27.194 3.25.555a.75.75 0 01.5.707v14.522c0 .323-.21.6-.5.707a9.735 9.735 0 01-3.25.433c-.61.11-1.194.259-1.75.433z" /></svg>
                 News
             </a>
             <a href="community.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zm-7.5 2.962c0-.539.18-1.03.5-1.45m-2.1-1.11a9.094 9.094 0 01-3.742-.479 3 3 0 014.682-2.72M6.305 16.685a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63A13.067 13.067 0 0113.5 21.75h-2.118c-.106.014-.214.025-.322.036a13.067 13.067 0 01-5.115-1.762a.75.75 0 01-.363-.63V19.125zM17.25 21.75a13.067 13.067 0 01-2.148-1.047.75.75 0 01-.39-.63V19.125a7.125 7.125 0 011.666-4.508 3.375 3.375 0 016.166 0 7.125 7.125 0 011.666 4.508v.003l-.001.119a.75.75 0 01-.39.63A13.067 13.067 0 0119.5 21.75h-2.25z" /></svg>
                 Community
             </a>
             <a href="favorites.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.5 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z" clip-rule="evenodd" /></svg>
                 Bookmarks
             </a>
             
@@ -157,15 +178,15 @@
             
             <!-- Section 2 -->
              <a href="linqai.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM9.515 8.355c.4-1.32 2.545-1.32 2.949 0l.475 1.565c.08.265.31.465.59.5l1.625.235c1.375.2 1.95 1.845.925 2.825l-1.18 1.145a.625.625 0 00-.18.55l.28 1.585c.245 1.355-1.155 2.4-2.385 1.755l-1.46-.775a.625.625 0 00-.58 0l-1.46.775c-1.23.645-2.63-0.4-2.385-1.755l.28-1.585a.625.625 0 00-.18-.55l-1.18-1.145c-1.025-.98-0.45-2.625.925-2.825l1.625-.235a.625.625 0 00.59-.5l.475-1.565z" clip-rule="evenodd" /></svg>
                 Linq AI
             </a>
             <a href="earnings.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-3.75-.625m3.75.625l-6.25 3.75" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.78 2.375a.75.75 0 01.44 1.343l-1.32 1.054a.75.75 0 01-1.07-1.07l1.054-1.32a.75.75 0 01.896-.007zM14.632 3.42a.75.75 0 01.007.896l-1.32 1.054a.75.75 0 11-1.07-1.07l1.054-1.32a.75.75 0 011.329.44zM16.92 6.007a.75.75 0 01.393.812l-1.018 4.23a.75.75 0 01-1.46-.35l1.018-4.23a.75.75 0 011.067-.462zM9.75 7.5a.75.75 0 01.75.75v11.25a.75.75 0 01-1.5 0V8.25a.75.75 0 01.75-.75zm3 4.5a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0v-6.75a.75.75 0 01.75-.75zm3-1.5a.75.75 0 01.75.75v8.25a.75.75 0 01-1.5 0v-8.25a.75.75 0 01.75-.75z" /></svg>
                 Earnings
             </a>
             <a href="linqplus.html" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345h5.518a.562.562 0 01.32.959l-4.435 3.223a.563.563 0 00-.18.634l2.125 5.111a.562.562 0 01-.852.654l-4.435-3.223a.563.563 0 00-.671 0l-4.435 3.223a.562.562 0 01-.852-.654l2.125-5.111a.563.563 0 00-.18-.634l-4.435-3.223a.562.562 0 01.32-.959h5.518a.563.563 0 00.475-.345L11.48 3.5z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.007z" clip-rule="evenodd" /></svg>
                 Premium
             </a>
         </nav>
@@ -174,25 +195,18 @@
         <div class="mt-auto">
              <hr class="border-gray-800 my-3">
              <!-- Section 3 -->
-            <a href="profile.html" id="bottomProfileLinkMobile" class="slideout-link hidden text-white block px-3 py-3 rounded-md text-lg font-bold"><i class="fas fa-user-circle w-8 mr-3 text-xl"></i>Profile</a>
-            <a href="login.html" id="authLinkMobile" class="slideout-link text-gray-400 hover:text-white block px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-in-alt w-6 mr-2"></i>Login</a>
-            <a href="#" id="logoutButtonMobile" class="slideout-link hidden text-red-500 hover:text-red-400 block px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-out-alt w-6 mr-2"></i>Logout</a>
+            <a href="profile.html" id="bottomProfileLinkMobile" class="slideout-link flex items-center text-white px-3 py-3 rounded-md text-lg font-bold"><i class="fas fa-user-circle"></i>Profile</a>
+            <a href="login.html" id="authLinkMobile" class="slideout-link flex items-center text-gray-400 hover:text-white px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-in-alt"></i>Login</a>
+            <a href="#" id="logoutButtonMobile" class="slideout-link hidden flex items-center text-red-500 hover:text-red-400 px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-out-alt"></i>Logout</a>
         </div>
     </div>
 </div>
 <!-- END: REDESIGNED HEADER -->
 
-
-<!-- 
-    NOTE: The script below contains the updated logic for the mobile menu toggle.
-    It replaces the need for an external headerManager.js file for this functionality.
-    Your existing Firebase auth logic should be added to the auth.onAuthStateChanged function.
--->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     // --- Mobile Menu Toggle Logic ---
     const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const closeButton = document.getElementById('mobile-menu-close-button');
     const overlay = document.getElementById('menu-overlay');
     const slideoutMenu = document.getElementById('mobile-slideout-menu');
     const openIcon = document.getElementById('menu-open-icon');
@@ -224,39 +238,52 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     mobileMenuButton?.addEventListener('click', toggleMenu);
-    closeButton?.addEventListener('click', closeMenu);
     overlay?.addEventListener('click', closeMenu);
 
+    // --- Desktop Active Nav Link ---
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll('.nav-link-desktop').forEach(link => {
+        // Use getAttribute to get the raw href value
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        }
+    });
+
+
     // --- Firebase Auth UI Logic ---
-    // This assumes you have Firebase initialized elsewhere in your project.
-    // If not, you need to add your Firebase initialization config here.
-    // const auth = firebase.auth();
+    // This is a placeholder for your actual Firebase logic.
+    // Uncomment and integrate with your Firebase setup.
+    /*
+    // Assumes firebase is initialized
+    const auth = firebase.auth();
     
-    // auth.onAuthStateChanged(user => {
-    //     const isLoggedIn = !!user;
+    auth.onAuthStateChanged(user => {
+        const isLoggedIn = !!user;
 
-    //     // Desktop Elements
-    //     document.getElementById('authLinkDesktopLogin')?.classList.toggle('hidden', isLoggedIn);
-    //     document.getElementById('profileLinkDesktop')?.classList.toggle('hidden', !isLoggedIn);
-    //     const navProfilePic = document.getElementById('navProfilePic');
-    //     if(navProfilePic) {
-    //         navProfilePic.src = user?.photoURL || 'https://placehold.co/36x36/2C2F33/EAEAEA?text=U';
-    //     }
+        // Desktop Elements
+        document.getElementById('authLinkDesktopLogin')?.classList.toggle('hidden', isLoggedIn);
+        document.getElementById('profileLinkDesktop')?.classList.toggle('hidden', !isLoggedIn);
+        const navProfilePic = document.getElementById('navProfilePic');
+        if(navProfilePic) {
+            navProfilePic.src = user?.photoURL || 'https://placehold.co/36x36/2C2F33/EAEAEA?text=U';
+        }
 
-    //     // Mobile Slideout Elements
-    //     document.getElementById('authLinkMobile')?.classList.toggle('hidden', isLoggedIn);
-    //     document.getElementById('bottomProfileLinkMobile')?.classList.toggle('hidden', !isLoggedIn);
-    //     document.getElementById('logoutButtonMobile')?.classList.toggle('hidden', !isLoggedIn);
-    //     const slideoutUserInfo = document.getElementById('slideout-user-info');
-    //     if(slideoutUserInfo) {
-    //         slideoutUserInfo.classList.toggle('hidden', !isLoggedIn);
-    //         if(isLoggedIn) {
-    //             document.getElementById('slideoutProfilePic').src = user.photoURL || 'https://placehold.co/40x40/2C2F33/EAEAEA?text=U';
-    //             document.getElementById('slideoutDisplayName').textContent = user.displayName || 'User';
-    //             document.getElementById('slideoutEmail').textContent = user.email ? `@${user.email.split('@')[0]}` : '@user';
-    //         }
-    //     }
-    // });
+        // Mobile Slideout Elements
+        document.getElementById('authLinkMobile')?.classList.toggle('hidden', isLoggedIn);
+        document.getElementById('bottomProfileLinkMobile')?.classList.toggle('hidden', !isLoggedIn);
+        document.getElementById('logoutButtonMobile')?.classList.toggle('hidden', !isLoggedIn);
+        const slideoutUserInfo = document.getElementById('slideout-user-info');
+        if(slideoutUserInfo) {
+            slideoutUserInfo.classList.toggle('hidden', !isLoggedIn);
+            if(isLoggedIn) {
+                document.getElementById('slideoutProfilePic').src = user.photoURL || 'https://placehold.co/40x40/2C2F33/EAEAEA?text=U';
+                document.getElementById('slideoutDisplayName').textContent = user.displayName || 'User';
+                document.getElementById('slideoutEmail').textContent = user.email ? `@${user.email.split('@')[0]}` : '@user';
+            }
+        }
+    });
+    */
 });
 </script>
 
