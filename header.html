@@ -1,153 +1,156 @@
-<style>
-/* Base Navigation Bar Styles */
-.main-nav {
-    background-color: rgba(10, 10, 10, 0.7); /* Dark semi-transparent background */
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linq Header</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #05080f; 
+        }
 
-/* Desktop Navigation Link Styles */
-.nav-link {
-    transition: all 0.2s ease-in-out;
-    font-weight: 500;
-    color: #A0A0A0; /* Lighter gray for better readability */
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.375rem;
-    font-size: 0.9rem;
-}
-.nav-link:hover, .nav-link.active {
-    color: #FFFFFF;
-    background-color: rgba(255, 255, 255, 0.05);
-}
+        /* Simple, solid black header */
+        .header-nav {
+            background-color: #000000;
+            border-bottom: 1px solid #2a2a2a;
+        }
 
-/* Premium Button Style */
-.go-premium-btn {
-    background: #00BFFF;
-    color: white;
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    transition: all 0.2s ease-in-out;
-    box-shadow: 0 4px 15px -5px rgba(0, 191, 255, 0.4);
-}
-.go-premium-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px -5px rgba(0, 191, 255, 0.5);
-    background: #00A9E0;
-}
+        /* Modern glass button style */
+        .go-premium-btn-glass {
+            background: rgba(40, 40, 40, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.2s ease;
+        }
 
-/* Profile Picture Style */
-#navProfilePic {
-    transition: border-color 0.2s ease;
-}
+        .go-premium-btn-glass:hover {
+            background: rgba(50, 50, 50, 0.8);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        
+        /* Slideout Menu styling to match the image */
+        #mobile-slideout-menu {
+            background-color: #000000;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        #menu-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
 
-/* Mobile Slide-out Menu Styles */
-#mobile-slideout-menu {
-    background-color: rgba(17, 17, 17, 0.8); /* #111111 with opacity */
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-}
+        .slideout-link {
+            transition: background-color 0.2s ease;
+        }
+        .slideout-link:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
 
-.slideout-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    color: #a0a0a0;
-    font-weight: 500;
-    transition: all 0.2s ease-in-out;
-}
-.slideout-link:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: white;
-}
-.slideout-link i {
-    width: 1.5rem;
-    text-align: center;
-    color: #6b7280;
-    transition: color 0.2s ease-in-out;
-}
-.slideout-link:hover i {
-    color: #00BFFF;
-}
-.slideout-link .beta-tag {
-    background-color: #00BFFF;
-    color: white;
-    font-size: 0.65rem;
-    font-weight: 600;
-    padding: 0.125rem 0.5rem;
-    border-radius: 9999px;
-    margin-left: auto;
-}
-</style>
-<nav class="fixed top-0 left-0 w-full z-[1000] bg-black/80 backdrop-blur-sm border-b border-gray-800">
-  <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-    
-    <div class="flex-shrink-0">
-      <a href="index.html" class="text-3xl font-bold text-white">Linq</a>
-    </div>
+        /* Profile picture styling */
+        #navProfilePic, #slideoutProfilePic {
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white p-10">
 
-    <div class="hidden md:block">
-      <div class="flex items-center space-x-2">
-        <a href="index.html" class="nav-link px-3 py-2">News</a>
-        <a href="community.html" class="nav-link px-3 py-2">Community</a>
-        <a href="linqai.html" class="nav-link px-3 py-2">Linq AI</a>
-        <a href="earnings.html" class="nav-link px-3 py-2">Earnings</a>
-        <a href="favorites.html" class="nav-link px-3 py-2">Bookmarks</a>
-      </div>
-    </div>
-
-    <div class="flex items-center">
-      <div class="hidden md:flex items-center space-x-4">
-        <a href="linqplus.html" class="go-premium-btn">Go Premium</a>
-        <a href="login.html" id="authLinkDesktopLogin" class="hidden nav-link-button">Login</a>
-        <a href="profile.html" id="profileLinkDesktop" class="hidden" title="My Profile">
-          <img id="navProfilePic" style="display:none;" src="" alt="User" class="rounded-full w-9 h-9 object-cover border-2 border-gray-600 hover:border-cyan-400 transition">
+<!-- 
+    START: REDESIGNED HEADER V2
+    - Simple solid black desktop header.
+    - New mobile menu layout based on the provided image.
+    - Modern glass-style CTA button.
+-->
+<nav class="header-nav fixed top-0 left-0 w-full z-50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      
+      <!-- Logo / Site Name -->
+      <div class="flex-shrink-0">
+        <a href="index.html" class="text-2xl font-bold text-white tracking-wider">
+          Linq
         </a>
       </div>
-      <div class="md:hidden">
-          <button id="mobile-menu-button" type="button" class="text-gray-300 hover:text-white focus:outline-none p-2 rounded-md">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-          </button>
+
+      <!-- Desktop Navigation Links -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-2">
+          <a href="index.html" class="text-gray-400 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">News</a>
+          <a href="community.html" class="text-gray-400 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Community</a>
+          <a href="linqai.html" class="text-gray-400 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Linq AI</a>
+          <a href="earnings.html" class="text-gray-400 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Earnings</a>
+          <a href="favorites.html" class="text-gray-400 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Bookmarks</a>
+        </div>
+      </div>
+
+      <!-- Right side actions: CTA, Auth, and Mobile Menu Button -->
+      <div class="flex items-center">
+        <div class="hidden md:flex items-center space-x-4">
+          <a href="linqplus.html" class="go-premium-btn-glass text-white font-semibold py-2 px-4 rounded-md text-sm">
+            Go Premium
+          </a>
+          <!-- IMPORTANT: Login/Profile links with `hidden` class for JS to toggle -->
+          <a href="login.html" id="authLinkDesktopLogin" class="hidden text-gray-300 hover:text-white font-medium text-sm">Login</a>
+          <a href="profile.html" id="profileLinkDesktop" class="hidden rounded-full hover:opacity-80 transition-opacity" title="My Profile">
+            <img id="navProfilePic" src="https://placehold.co/36x36/2C2F33/EAEAEA?text=U" alt="User Profile" class="w-9 h-9 rounded-full border-2 border-gray-700 hover:border-gray-500">
+          </a>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+            <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none">
+                <span class="sr-only">Open main menu</span>
+                <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </button>
+        </div>
       </div>
     </div>
   </div>
 </nav>
 
-<div id="menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-70 z-40 transition-opacity duration-300 ease-in-out"></div>
-<div id="mobile-slideout-menu" class="fixed top-0 right-0 h-full w-72 bg-[#111111] z-50 transform translate-x-full transition-transform ease-in-out duration-300 overflow-y-auto">
-    <div class="p-4">
-        <div class="flex justify-between items-center mb-6">
-            <span class="font-bold text-lg text-white">Linq</span>
-            <button id="mobile-menu-close-button" class="text-gray-400 hover:text-white text-2xl">&times;</button>
-        </div>
-
-        <div id="slideout-user-info" class="hidden mb-6">
-            <a href="profile.html" class="flex items-center justify-between w-full">
-                <div>
-                    <p id="slideoutDisplayName" class="font-bold text-white leading-tight">User</p>
-                    <p id="slideoutEmail" class="text-sm text-gray-400 leading-tight">@email</p>
-                </div>
-                <img id="slideoutProfilePic" src="" class="w-10 h-10 rounded-full object-cover border-2 border-gray-600">
-            </a>
+<!-- Slide-out Mobile Menu (New Design) -->
+<div id="menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 z-30"></div>
+<div id="mobile-slideout-menu" class="fixed top-0 right-0 h-full w-80 bg-black z-40 transform translate-x-full shadow-2xl">
+    <div class="p-5 flex flex-col h-full">
+        <!-- Menu Header -->
+        <div class="flex justify-between items-start mb-4">
+            <!-- User Info Section (visible when logged in) -->
+            <div id="slideout-user-info" class="hidden">
+                <a href="profile.html" class="flex flex-col space-y-1">
+                    <img id="slideoutProfilePic" src="https://placehold.co/40x40/2C2F33/EAEAEA?text=U" class="w-10 h-10 rounded-full object-cover">
+                    <p id="slideoutDisplayName" class="font-bold text-white leading-tight pt-2">User Name</p>
+                    <p id="slideoutEmail" class="text-sm text-gray-500 leading-tight">@email_handle</p>
+                </a>
+            </div>
+            <button id="mobile-menu-close-button" class="text-gray-500 hover:text-white text-3xl">&times;</button>
         </div>
         
-        <nav class="flex flex-col space-y-1">
-            <a href="index.html" class="slideout-link"><i class="fas fa-newspaper w-6"></i>News</a>
-            <a href="community.html" class="slideout-link"><i class="fas fa-users w-6"></i>Community</a>
-            <a href="earnings.html" class="slideout-link"><i class="fas fa-chart-line w-6"></i>Earnings</a>
-            <hr class="border-gray-700 my-2">
-            <a href="linqplus.html" class="slideout-link"><i class="fas fa-star w-6"></i>Premium</a>
-            <a href="linqai.html" class="slideout-link"><i class="fas fa-comment-dots w-6"></i>Linq AI<span class="text-xs bg-cyan-500 text-white px-1.5 py-0.5 rounded-full ml-2">BETA</span></a>
-            <a href="favorites.html" class="slideout-link"><i class="fas fa-bookmark w-6"></i>Bookmarks</a>
-            <hr class="border-gray-700 my-2">
-            <a href="login.html" id="authLinkMobile" class="slideout-link"><i class="fas fa-sign-in-alt w-6"></i>Login</a>
-            <a href="profile.html" id="bottomProfileLinkMobile" class="slideout-link hidden"><i class="fas fa-user-circle w-6"></i>Profile</a>
-            <a href="#" id="logoutButtonMobile" class="slideout-link text-red-400 hidden"><i class="fas fa-sign-out-alt w-6"></i>Logout</a>
+        <!-- Navigation Links -->
+        <nav class="flex flex-col space-y-1 flex-grow">
+            <a href="profile.html" id="bottomProfileLinkMobile" class="slideout-link hidden text-white block px-3 py-3 rounded-md text-lg font-bold"><i class="fas fa-user w-8 mr-3 text-xl"></i>Profile</a>
+            <a href="linqplus.html" class="slideout-link text-white block px-3 py-3 rounded-md text-lg font-bold"><i class="fa-brands fa-xing w-8 mr-3 text-xl"></i>Premium</a>
+            <a href="linqai.html" class="slideout-link text-white block px-3 py-3 rounded-md text-lg font-bold"><i class="far fa-comment-dots w-8 mr-3 text-xl"></i>Linq AI</a>
+            <a href="favorites.html" class="slideout-link text-white block px-3 py-3 rounded-md text-lg font-bold"><i class="far fa-bookmark w-8 mr-3 text-xl"></i>Bookmarks</a>
         </nav>
+
+        <!-- Footer Auth Links -->
+        <div class="mt-auto">
+             <hr class="border-gray-800 my-4">
+            <!-- IMPORTANT: Auth links with `hidden` class for JS to toggle -->
+            <a href="login.html" id="authLinkMobile" class="slideout-link text-gray-400 hover:text-white block px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-in-alt w-6 mr-2"></i>Login</a>
+            <a href="#" id="logoutButtonMobile" class="slideout-link hidden text-red-500 hover:text-red-400 block px-3 py-3 rounded-md text-base font-medium"><i class="fas fa-sign-out-alt w-6 mr-2"></i>Logout</a>
+        </div>
     </div>
 </div>
+<!-- END: REDESIGNED HEADER -->
+
+
+<!-- Include the existing headerManager.js. No changes needed to it. -->
+<!-- Make sure this file exists in the correct path -->
+<script src="headerManager.js" defer></script>
+
+</body>
+</html>
